@@ -8,6 +8,12 @@ package br.poo.joao.classes;
 
 public class DadoComUmParametro extends Dado{
 	
+	/**
+	 * Atributo private do tipo int que representa o único parâmetro de um tipo de dado 
+	 * com um parâmetro
+	 * 
+	 */
+	
 	private int parametroUm;
 
 	public int getParametroUm() {

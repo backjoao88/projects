@@ -7,7 +7,25 @@ import br.poo.joao.classes.validacao.ValidadorScript;
 import br.poo.joao.enumeracoes.Collate;
 import br.poo.joao.enumeracoes.CollateVersion;
 
+/**
+ * 
+ * 
+ * Classe responsável por conter os métodos responsáveis por gerar o script SQL final.
+ * Todos seus métodos são estáticos.
+ * 
+ * @author João Paulo Back
+ *
+ */
+
 public class Script{
+	
+	/**
+	 * Método estático responsável por gerar o script do database.
+	 * Recebe o objeto Database e o transforma seus atributos em um script SQL do tipo String.
+	 * 
+	 * @param db Objeto que será transformado
+	 * @return Retorna o script SQL no formato de String.
+	 */
 	
 	public static String gerarScriptDatabase(Database db) {
 		// CREATE SCHEMA `faculdade` DEFAULT CHARACTER SET big5 COLLATE big5_bin ;
@@ -33,6 +51,14 @@ public class Script{
 		
 		return script;
 	}
+	
+	/**
+	 * Método estático responsável por gerar o script da tabela.
+	 * Recebe o objeto Tabela e o transforma seus atributos em um script SQL do tipo String.
+	 * 
+	 * @param db Objeto que será transformado
+	 * @return Retorna o script SQL no formato de String.
+	 */
 	
 	public static String gerarScriptTabela(Tabela tabela) {
 		String camposVariaveis = "";
@@ -85,6 +111,14 @@ public class Script{
 		
 		return tabelaScript;
 	}
+	
+	/**
+	 * Método estático responsável por gerar o script do campo.
+	 * Recebe o objeto Campo e o transforma seus atributos em um script SQL do tipo String.
+	 * 
+	 * @param db Objeto que será transformado
+	 * @return Retorna o script SQL no formato de String.
+	 */
 	
 	public static String gerarScriptCampo(Campo campo) {
 		String sql = "\t`"+ campo.getNome()+"` "+campo.getTipoDado();
