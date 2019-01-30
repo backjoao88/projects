@@ -1,0 +1,9 @@
+CREATE DATABASE `cc` DEFAULT CHARACTER SET big5;
+USE `cc`;
+CREATE TABLE `pessoa` (
+	`pessoa_codigo` INT NOT NULL AUTO_INCREMENT,
+	`pessoa_idade` DECIMAL(2,1) NOT NULL,
+	PRIMARY KEY (pessoa_codigo),
+	UNIQUE INDEX `pessoa_idade_UNIQUE` (`pessoa_idade` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = big5;
