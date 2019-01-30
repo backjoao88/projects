@@ -1,1 +1,3 @@
-# projects
+# Projects
+
+Projects from university period.
