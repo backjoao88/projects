@@ -1,0 +1,8 @@
+func void main(){
+	int[2][3] vetor = {{1,2,3} ,{2,3,4}};
+	vetor[0][1] =   5;
+}
+
+func void main(){
+	int[2] vetor = {1,2};
+}
