@@ -2,18 +2,18 @@ const TABLE_HEIGHT   = 4
 const TABLE_WIDTH    = 6
 const MEMORY_TABLE_TOTAL_CARDS = TABLE_HEIGHT * TABLE_WIDTH;
 
-const imgsTable      = ['<img width="120" height="120" src=\'imgs/0.jpeg\'/>',
+const imgsTable      = ['<img id="imgClass" width="120" height="120" src=\'imgs/0.jpeg\'/>',
                         '<img width="120" height="120" src=\'imgs/1.jpeg\'/>',
                         '<img width="120" height="120" src=\'imgs/2.jpeg\'/>',
                         '<img width="120" height="120" src=\'imgs/3.jpeg\'/>',
                         '<img width="120" height="120" src=\'imgs/4.jpeg\'/>',
                         '<img width="120" height="120" src=\'imgs/5.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/5.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/5.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/5.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/5.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/5.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/5.jpeg\'/>']                         
+                        '<img width="120" height="120" src=\'imgs/6.jpeg\'/>',
+                        '<img width="120" height="120" src=\'imgs/7.jpeg\'/>',
+                        '<img width="120" height="120" src=\'imgs/8.jpeg\'/>',
+                        '<img width="120" height="120" src=\'imgs/9.jpeg\'/>',
+                        '<img width="120" height="120" src=\'imgs/10.jpeg\'/>',
+                        '<img width="120" height="120" src=\'imgs/11.jpeg\'/>']                         
 
 const memoryTable    = []
 
@@ -21,13 +21,24 @@ function start(){
     createTableDataStructure()
     createImagesPairs()
     renderTable()
+    createListeningClickEvents();
 }
 
 /* .........................................................................................................*/
 
 function createImagesPairs(){
-    createSequenceOfPairs();
-    spreadCards();
+    createSequenceOfPairs()
+    spreadCards()
+}
+
+/* .........................................................................................................*/
+
+function createListeningClickEvents(){
+    let indexOfImg = 0;
+    document.getElementById("imgClass").addEventListener("click", function(){
+        alert(indexOfImg)
+    })
+    console.log(indexOfImg);
 }
 
 /* .........................................................................................................*/
@@ -43,41 +54,25 @@ function createSequenceOfPairs(){
 
 /* .........................................................................................................*/
 
-/*
-
-INICIO
-	INDEX_ATUAL = GERAR INDEX ALETAORIO DA TABELA;
-	IF(INDEX_ATUAL == 24)
-		INDEX_ATUAL = 0
-	LET AUX = 0;
-	INDEX_A_SER_TROCADO = INDEX_ATUAL + 1;
-	AUX = TABELA[INDEX_ATUAL];
-	TABELA[INDEX_ATUAL] = TABELA[INDEX_A_SER_TROCADO]
-	TABELA[INDEX_A_SER_TROCADO] = AUX
-
-FIM.
-
-*/
-
 function spreadCards(){
-    let rand = 2;
-    let aux = 0;
-    let indexToBeChange = 0;
-  //  for(let i = 0; i < 5; i++){
-        let randomIndexTableMemory = createRandomIndexTableMemory()
-        if(randomIndexTableMemory == 23){
-            indexToBeChange = rand - 1;
-        }else{
-            indexToBeChange = randomIndexTableMemory + rand;
+    let rand = 2
+    let aux = 0
+    let randomIndexTableMemory = 0
+    let randomIndexTableMemoryWithRand = 0
+
+    for(let i = 0; i < 100; i++){
+        randomIndexTableMemory = createRandomIndexTableMemory()
+        randomIndexTableMemoryWithRand = randomIndexTableMemory + rand;
+
+        if(randomIndexTableMemoryWithRand >= memoryTable.length){
+            randomIndexTableMemoryWithRand = rand - 1;
         }
 
-        console.log(randomIndexTableMemory)
-        console.log(indexToBeChange)
-
         aux = memoryTable[randomIndexTableMemory]
-        memoryTable[randomIndexTableMemory] = memoryTable[indexToBeChange]
-        memoryTable[indexToBeChange] = aux
-  //  }
+        memoryTable[randomIndexTableMemory] = memoryTable[randomIndexTableMemoryWithRand]
+        memoryTable[randomIndexTableMemoryWithRand] = aux
+    }
+    
 }
 
 /* .........................................................................................................*/
@@ -103,8 +98,10 @@ function renderTable(){
 
         for (let j = 0; j < TABLE_WIDTH; j++){
             indexMemoryTable = ((TABLE_WIDTH * i) + j);
+            indexImgTable = memoryTable[indexMemoryTable];
             html += '<td>'
-            html += '<div>'+memoryTable[indexMemoryTable]+'</div>'
+            html += '<div>'+imgsTable[indexImgTable]+'</div>'
+         //   html += '<div>'+memoryTable[indexMemoryTable]+'</div>'
             html += '</td>'   
         }
 
