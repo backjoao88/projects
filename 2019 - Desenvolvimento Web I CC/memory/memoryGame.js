@@ -2,18 +2,18 @@ const TABLE_HEIGHT   = 4
 const TABLE_WIDTH    = 6
 const MEMORY_TABLE_TOTAL_CARDS = TABLE_HEIGHT * TABLE_WIDTH;
 
-const imgsTable      = ['<img id="imgClass" width="120" height="120" src=\'imgs/0.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/1.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/2.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/3.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/4.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/5.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/6.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/7.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/8.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/9.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/10.jpeg\'/>',
-                        '<img width="120" height="120" src=\'imgs/11.jpeg\'/>']                         
+const imgsTable      = ['<img class="imgElement" width="120" height="120" src=\'imgs/0.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/1.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/2.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/3.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/4.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/5.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/6.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/7.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/8.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/9.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/10.jpeg\'/>',
+                        '<img class="imgElement" width="120" height="120" src=\'imgs/11.jpeg\'/>']                         
 
 const memoryTable    = []
 
@@ -35,10 +35,12 @@ function createImagesPairs(){
 
 function createListeningClickEvents(){
     let indexOfImg = 0;
-    document.getElementById("imgClass").addEventListener("click", function(){
-        alert(indexOfImg)
-    })
-    console.log(indexOfImg);
+    let imgClassElements = document.getElementsByClassName("imgElement")
+    for (let i = 0; i < imgClassElements.length; i++){
+        imgClassElements[i].addEventListener("click", function(){
+            alert(i)
+        })
+    }
 }
 
 /* .........................................................................................................*/
