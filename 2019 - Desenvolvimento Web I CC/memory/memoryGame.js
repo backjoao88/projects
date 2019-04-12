@@ -21,8 +21,47 @@ function start(){
     createTableDataStructure()
     createImagesPairs()
     renderTable()
-    createListeningClickEvents();
+    startGame()
 }
+
+/* .........................................................................................................*/
+
+function startGame(){
+    createPairTryHit()
+}
+
+/* .........................................................................................................*/
+
+function createPairTryHit(){
+    
+    let currentClickedImgTableIndex         = -1
+    let previousClickedImgTableIndex        = -1
+    let currentClickedImgIndex              = -1
+    let previousClickedImgIndex             = -1
+    
+
+    let imgClassElements = document.getElementsByClassName("imgElement")
+    for (let i = 0; i < imgClassElements.length; i++){
+        imgClassElements[i].addEventListener("click", function(){
+
+            previousClickedImgIndex               = currentClickedImgIndex
+            currentClickedImgIndex                = i
+
+            previousClickedImgTableIndex          = currentClickedImgTableIndex
+            currentClickedImgTableIndex           = memoryTable[i]
+
+            if(previousClickedImgTableIndex == currentClickedImgTableIndex 
+                && previousClickedImgIndex != currentClickedImgIndex){
+
+                alert('You got one!')
+                previousClickedImgTableIndex    = -1
+                currentClickedImgTableIndex     = -1
+            }
+        })
+    }
+
+}
+
 
 /* .........................................................................................................*/
 
@@ -33,15 +72,15 @@ function createImagesPairs(){
 
 /* .........................................................................................................*/
 
-function createListeningClickEvents(){
-    let indexOfImg = 0;
-    let imgClassElements = document.getElementsByClassName("imgElement")
-    for (let i = 0; i < imgClassElements.length; i++){
-        imgClassElements[i].addEventListener("click", function(){
-            alert(i)
-        })
-    }
-}
+// function createListeningClickEvents(){
+//     let imgClassElements = document.getElementsByClassName("imgElement")
+//     for (let i = 0; i < imgClassElements.length; i++){
+//         imgClassElements[i].addEventListener("click", function(){
+//             clickedImgIndex = memoryTable[i]
+//             return clickedImgIndex
+//         })
+//     }
+// }
 
 /* .........................................................................................................*/
 
