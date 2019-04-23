@@ -1,0 +1,40 @@
+package jpb.exercicio3;
+
+public class Produtor implements Runnable {
+
+	private Buffer buffer = null;
+
+	public Produtor(Buffer buffer) {
+		this.buffer = buffer;
+	}
+
+	public Buffer getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(Buffer buffer) {
+		this.buffer = buffer;
+	}
+
+	public void produzir() {
+		while (true) {
+			int item = (int) (Math.random() * 100);
+			buffer.incrementar(item);
+		}
+	}
+
+	@Override
+	public void run() {
+		produzir();
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Produtor [buffer=");
+		builder.append(buffer);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}
