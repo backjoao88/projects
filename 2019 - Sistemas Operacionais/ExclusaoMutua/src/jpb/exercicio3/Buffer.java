@@ -1,6 +1,6 @@
 package jpb.exercicio3;
 
-import java.util.Arrays;
+import java.util.Stack;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -8,10 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Buffer {
 
 	private static final int TAMANHO_BUFFER = 5;
-	private int[] itens = new int[TAMANHO_BUFFER];
-	private int proxPosicaoProduzirBuffer = 0;
-	private int proxPosicaoConsumirBuffer = 0;
-	private int quantidadeItens = 0;
+	private Stack<Integer> itens = new Stack<Integer>();
 
 	private Lock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
@@ -19,19 +16,19 @@ public class Buffer {
 	public void incrementar(int quantidade) {
 		lock.lock();
 		try {
-			while (quantidadeItens == TAMANHO_BUFFER) {
+			while (itens.size() == TAMANHO_BUFFER) {
 				try {
 					condition.await();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-			if (quantidadeItens == 0) {
+			if (itens.size() == 0) {
 				condition.signalAll();
 			}
-			itens[proxPosicaoProduzirBuffer] = quantidade;
-			proxPosicaoProduzirBuffer = (proxPosicaoProduzirBuffer + 1) % TAMANHO_BUFFER;
-			quantidadeItens++;
+			
+			itens.push(quantidade);
+			
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e1) {
@@ -46,21 +43,18 @@ public class Buffer {
 	public void decrementar() {
 		lock.lock();
 		try {
-			while (quantidadeItens == 0) {
+			while (itens.size() == 0) {
 				try {
 					condition.await();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-			if (quantidadeItens == TAMANHO_BUFFER) {
+			if (itens.size() == TAMANHO_BUFFER) {
 				condition.signalAll();
 			}
 
-			int qtdItensConsumidos = itens[proxPosicaoConsumirBuffer];
-			proxPosicaoConsumirBuffer = (proxPosicaoConsumirBuffer + 1) % TAMANHO_BUFFER;
-			quantidadeItens--;
-
+			itens.pop();
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e1) {
@@ -73,19 +67,13 @@ public class Buffer {
 	}
 	
 	private void imprimir() {
-		int i = proxPosicaoConsumirBuffer;
-		int qtdeImpressos = 0;
-		
-		boolean vazio = true;
-		while(qtdeImpressos < quantidadeItens) {
-			vazio = false;
-			System.out.print(itens[i] + " ");
-			i = (i + 1) % TAMANHO_BUFFER;
-			qtdeImpressos++;
+		if(itens.size() == 0) {
+			System.out.println("*");
+			return;
 		}
 		
-		if(vazio) {
-			System.out.print("** Buffer Vazio **");
+		for (int i = 0; i < itens.size(); i++) {
+			System.out.print(itens.get(i)+ " ");
 		}
 		
 		System.out.println();
