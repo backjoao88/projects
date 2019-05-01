@@ -1,0 +1,154 @@
+/* CONTAINER */
+
+#container{
+    padding-bottom: 10px;
+}
+
+#container h2{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#container-form{
+    margin: 0 auto;
+    width: 80%;
+}
+
+#container-table{
+    margin: 0 auto;
+    width: 80%;
+}
+
+/* TABELA */
+
+#saida_dados{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#saida_dados{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 0px auto;
+}
+
+#saida_dados th{
+    border: 1px solid black;
+    background-color: #4CAF50;
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+}
+
+#saida_dados td{
+    background-color: #f2f2f2;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+#saida_dados td:hover{
+    background-color: #808080;
+    transition: background-color 0.1s linear;
+}
+
+/* FORM */
+
+#entrada_dados{
+    text-align: center;
+}
+
+#entrada_dados textarea{
+    resize: none;
+}
+
+#searched_file{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+/* TEXT AREA */
+
+#entrada_dados_textarea{
+    border-radius: 8px;
+}
+
+#entrada_dados_textarea:focus{
+    outline: none;
+}
+
+/* BUTTONS */
+
+#entrada_dados label {
+    background-color: #4CAF50;
+    border-radius: 6px;
+    color: white;
+    margin: 10px;
+    padding: 6px 20px;
+    transition: background-color 0.1s linear;
+    cursor:pointer;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+  
+#entrada_dados label:hover {
+    background-color: black;
+    color: white;
+    transition: background-color 0.2s linear;
+}
+
+#save_json_btn {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 10px;
+    padding: 6px 20px;
+    transition: background-color 0.1s linear;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+  
+#save_json_btn:hover {
+    background-color: black;
+    color: white;
+    cursor:pointer;
+    transition: background-color 0.2s linear;
+}
+
+#calculate_btn {
+    background-color: #4CAF50;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin: 10px;
+    padding: 6px 20px;
+    transition: background-color 0.1s linear;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+  
+#calculate_btn:hover {
+    background-color: black;
+    color: white;
+    cursor:pointer;
+    transition: background-color 0.2s linear;
+}
+
+#clear_btn {
+    background-color: #4CAF50;
+    border-radius: 5px;
+    color: white;
+    margin: 10px;
+    padding: 6px 20px;
+    transition: background-color 0.1s linear;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+  
+#clear_btn:hover {
+    background-color: black;
+    color: white;
+    cursor:pointer;
+    transition: background-color 0.2s linear;
+}
