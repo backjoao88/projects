@@ -28,8 +28,8 @@
             return $this;
         }
 
-        public function comAListaDeLivros($emprestimo_lista_livros){
-            $this->setEmprestimoLivros($emprestimo_lista_livros);
+        public function comAListaDeLivros($emprestimo_livros){
+            $this->setEmprestimoLivros($emprestimo_livros);
             return $this;
         }
 
@@ -74,12 +74,17 @@
         }
 
         public function toString(){
-            return 'Emprestimo -> ' . ', ' . 
-                    'ID: ' . $this->getEmprestimoId() . ', ' . 
-                    'Data Entrega: ' . $this->getEmprestimoDataEntrega() . ', ' . 
-                    'Data Devolucao: ' . $this->getEmprestimoDataDevolucao() . ', ' . 
-                    'Usuario ID: ' . $this->getEmprestimoUsuarioId()->toString() . ', ' . 
-                    'Livros: ' . implode("", $this->getEmprestimoLivros()) . "<br>";
+            $str = '';
+            foreach($this->getEmprestimoLivros() as $livro){
+                $str .= '<br>' . $livro->toString();
+            }
+
+            return 'Emprestimo -> '     . ', ' . 
+                    'ID: '              . $this->getEmprestimoId() . ', ' . 
+                    'Data Entrega: '    . $this->getEmprestimoDataEntrega() . ', ' . 
+                    'Data Devolucao: '  . $this->getEmprestimoDataDevolucao() . ', ' . 
+                    'Usuario ID: '      . $this->getEmprestimoUsuarioId()->toString() . ', ' . 
+                    'Livros: '          . $str;
         }
 
     }

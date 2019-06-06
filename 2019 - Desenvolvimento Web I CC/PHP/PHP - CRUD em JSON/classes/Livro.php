@@ -72,7 +72,7 @@
         }
 
         public function getLivroDataPublicacao(){
-                return $this->livro_data_publicacao;
+            return $this->livro_data_publicacao;
         }
 
         public function setLivroDataPublicacao($livro_data_publicacao){
@@ -89,11 +89,11 @@
 
         public function toString(){
             return 'Livro -> '  . 
-                    'Nome: ' . $this->getLivroNome() . ', ' . 
-                    'ISBN: ' . $this->getLivroIsbn() . ', ' . 
-                    'Edicao: ' . $this->getLivroEdicao() . ', ' . 
+                    'Nome: '            . $this->getLivroNome() . ', ' . 
+                    'ISBN: '            . $this->getLivroIsbn() . ', ' . 
+                    'Edicao: '          . $this->getLivroEdicao() . ', ' . 
                     'Data Publicacao: ' . $this->getLivroDataPublicacao() . ', ' . 
-                    'Autor: ' . $this->getLivroAutor(); 
+                    'Autor: '           . $this->getLivroAutor(); 
                     
         }
 
