@@ -36,9 +36,9 @@
                 Cadastros
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Usuários</a>
-                  <a class="dropdown-item" href="#">Livros</a>
-                  <a class="dropdown-item" href="#">Empréstimos</a>
+                  <a class="dropdown-item" href="usuarios.php">Usuários</a>
+                  <a class="dropdown-item" href="livros.php">Livros</a>
+                  <a class="dropdown-item" href="emprestimos.php">Empréstimos</a>
                 </div>
             </li>
             </div>
