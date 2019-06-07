@@ -2,7 +2,7 @@
 
     include('autoload.php');
 
-    include('pag/header.php');
+    include('header.php');
 
     $livro = (new Livro())->utilizandoOID(1)
                           ->comONome('Joao')
@@ -57,7 +57,7 @@
     echo '<br> <br> DEPOIS <br>';
     echo json_encode($livroBO->listarLivros());
 
-    include('pag/footer.php');
+    include('footer.php');
 
 
 ?>

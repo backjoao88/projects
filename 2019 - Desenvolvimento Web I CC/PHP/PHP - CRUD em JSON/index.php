@@ -1,6 +1,6 @@
 <?php
 
-    include('pag/header.php');
-    include('pag/footer.php');
+    include('header.php');
+    include('footer.php');
 
 ?>

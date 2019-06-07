@@ -16,12 +16,7 @@
         
         public function alterar(Usuario $usuario){
             $this->ler();
-            foreach($this->lista_usuarios as $k => $usuArray){
-                $usu = (new Usuario())->utilizandoOID($usuArray['usuario_id'])
-                                      ->cadastradoComOLogin($usuArray['usuario_login'])
-                                      ->cadastradoComASenha($usuArray['usuario_senha'])
-                                      ->comONome($usuArray['usuario_nome'])
-                                      ->utilizandoOCpf($usuArray['usuario_cpf']);
+            foreach($this->lista_usuarios as $k => $usu){
                 if($usu->getUsuarioID() === $usuario->getUsuarioID()){
                     $this->lista_usuarios[$k] = $usuario;
                     $this->gravar();
@@ -31,12 +26,7 @@
 
         public function excluir(Usuario $usuario){
             $this->ler();
-            foreach($this->lista_usuarios as $k => $usuArray){
-                $usu = (new Usuario())->utilizandoOID($usuArray['usuario_id'])
-                                      ->cadastradoComOLogin($usuArray['usuario_login'])
-                                      ->cadastradoComASenha($usuArray['usuario_senha'])
-                                      ->comONome($usuArray['usuario_nome'])
-                                      ->utilizandoOCpf($usuArray['usuario_cpf']);
+            foreach($this->lista_usuarios as $k => $usu){
                 if($usu->getUsuarioID() === $usuario->getUsuarioID()){
                     unset($this->lista_usuarios[$k]);
                     $this->lista_usuarios = array_values($this->lista_usuarios);
@@ -57,8 +47,21 @@
         }
 
         public function ler(){
+            $lista_usuarios_obj = [];
             $json_file = file_get_contents(self::NOME_ARQUIVO);  
             $this->lista_usuarios = json_decode($json_file, true);
+
+            foreach($this->lista_usuarios as $k => $usuArray){
+                $usu = (new Usuario())->utilizandoOID($usuArray['usuario_id'])
+                                      ->cadastradoComOLogin($usuArray['usuario_login'])
+                                      ->cadastradoComASenha($usuArray['usuario_senha'])
+                                      ->comONome($usuArray['usuario_nome'])
+                                      ->utilizandoOCpf($usuArray['usuario_cpf']);
+                $lista_usuarios_obj[] = $usu;      
+            } 
+
+            $this->lista_usuarios = $lista_usuarios_obj;
+
             return $this->lista_usuarios;  
         }
 

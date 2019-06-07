@@ -1,0 +1,104 @@
+/* CONTAINER */
+
+#container{
+    padding-bottom: 10px;
+}
+
+#container h2, #container p{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#container-form{
+    margin: 0 auto;
+    width: 80%;
+}
+
+#container-tabela{
+    margin: 0 auto;
+    width: 100%;
+    
+}
+
+/* TABELA */
+
+.info-tabela{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.info-tabela{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 0px auto;
+}
+
+.info-tabela th{
+    border: 1px solid black;
+    background-color: #4CAF50;
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+}
+
+.info-tabela td{
+    background-color: #f2f2f2;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+.info-tabela td:hover{
+    background-color: #808080;
+    transition: background-color 0.1s linear;
+}
+
+/* FORM */
+
+#entrada_dados{
+    text-align: center;
+}
+
+#entrada_dados h1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#entrada_dados fieldset{
+    border: 0
+}
+
+/* TEXT AREA */
+
+.form-input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0 auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* BUTTONS */
+
+.form-button {
+    width: 40%;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    color: white;
+    margin: 0 auto;
+    padding: 12px 20px;
+    transition: background-color 0.1s linear;
+    font-size: 14px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+  
+.form-button:hover {
+    background-color: black;
+    color: white;
+    cursor:pointer;
+    transition: background-color 0.2s linear;
+}
+
+
+

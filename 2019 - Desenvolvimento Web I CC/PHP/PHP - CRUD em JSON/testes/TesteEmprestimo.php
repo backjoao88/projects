@@ -2,7 +2,7 @@
 
     include('autoload.php');
 
-    include('pag/header.php');
+    include('header.php');
 
     // Usuario
 
@@ -109,7 +109,7 @@
     echo '<br> <br> DEPOIS <br>';
     echo json_encode($emprestimoBO->listarEmprestimos());
 
-    include('pag/footer.php');
+    include('footer.php');
 
 
 ?>

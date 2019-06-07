@@ -2,7 +2,7 @@
 
     include('autoload.php');
 
-    include('pag/header.php');
+    include('header.php');
 
     $usuario = (new Usuario())->utilizandoOID(1)
                               ->cadastradoComOLogin('123')
@@ -54,7 +54,7 @@
     echo '<br> <br> DEPOIS <br>';
     echo json_encode($usuarioBO->listarUsuarios());
 
-    include('pag/footer.php');
+    include('footer.php');
 
 
 ?>
