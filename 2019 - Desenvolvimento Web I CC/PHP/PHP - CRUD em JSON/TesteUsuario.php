@@ -42,6 +42,15 @@
 
     $usuarioBO->alterar($usuario4);
 
+    $usuario5 = (new Usuario())->utilizandoOID(1)
+                                ->cadastradoComOLogin('21313')
+                                ->cadastradoComASenha('df')
+                                ->comONome('213131')
+                                ->utilizandoOCpf('vitor');
+
+
+    $usuarioBO->excluir($usuario5);
+
     echo '<br> <br> DEPOIS <br>';
     echo json_encode($usuarioBO->listarUsuarios());
 

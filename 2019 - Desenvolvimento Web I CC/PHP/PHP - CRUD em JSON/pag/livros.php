@@ -1,3 +1,8 @@
 <?php
-    echo 'livros.php';
+
+    include('header.php');
+
+
+    include('footer.php');
+
 ?>

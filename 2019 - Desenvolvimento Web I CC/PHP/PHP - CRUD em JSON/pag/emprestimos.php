@@ -1,4 +1,6 @@
 <?php
 
-    echo 'emprestimos.php';
+    include('header.php');
+    include('footer.php');
+
 ?>
