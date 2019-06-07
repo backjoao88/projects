@@ -1,6 +1,6 @@
 <?php
 
-    class Livro{
+    class Livro implements JsonSerializable{
 
         private $livro_id;
         private $livro_nome;
@@ -85,6 +85,10 @@
 
         public function setLivroAutor($livro_autor){
             $this->livro_autor = $livro_autor;
+        }
+
+        public function jsonSerialize(){
+            return get_object_vars($this);
         }
 
         public function toString(){

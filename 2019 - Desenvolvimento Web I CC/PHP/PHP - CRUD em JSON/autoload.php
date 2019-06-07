@@ -7,7 +7,10 @@
         'classes' . DIRECTORY_SEPARATOR . 'BO'  . DIRECTORY_SEPARATOR,
         'interfaces' . DIRECTORY_SEPARATOR ,
         'interfaces' . DIRECTORY_SEPARATOR ,
-        'interfaces' . DIRECTORY_SEPARATOR
+        'interfaces' . DIRECTORY_SEPARATOR ,
+        'pag' . DIRECTORY_SEPARATOR ,
+        'pag' . DIRECTORY_SEPARATOR ,
+        'pag' . DIRECTORY_SEPARATOR
     );
 
     spl_autoload_register(function ($className) {

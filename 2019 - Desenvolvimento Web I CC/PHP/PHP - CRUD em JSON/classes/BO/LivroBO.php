@@ -1,25 +1,30 @@
 <?php
 
-include('autoload.php')
+    include('autoload.php');
+
     class LivroBO implements IPersistenciaLivro{
 
-        private IPersistenciaLivro $plivro;
+        private $plivro;
 
-        public function inserir(Livro $plivro){
-            $this->plivro.inserir($plivro);
+        public function __construct($plivro){
+            $this->plivro = $plivro;
+        }
+
+        public function inserir(Livro $livro){
+            $this->plivro->inserir($livro);
         }
         
-        public function alterar(Livro $emprestimo){
-            $this->plivro.inserir($plivro);
+        public function alterar(Livro $livro){
+            $this->plivro->alterar($livro);
             
         }
 
-        public function excluir(Livro $plivro){
-            $this->plivro.inserir($plivro);            
+        public function excluir(Livro $livro){
+            $this->plivro->excluir($livro);            
         }
 
         public function listarLivros(){
-            return $this->plivro.listarLivros();   
+            return $this->plivro->listarLivros();   
         }
 
     }

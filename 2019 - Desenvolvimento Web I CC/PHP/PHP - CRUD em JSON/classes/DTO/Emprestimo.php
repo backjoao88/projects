@@ -1,6 +1,6 @@
 <?php
 
-    class Emprestimo{
+    class Emprestimo implements JsonSerializable{
 
         private $emprestimo_id;
         private $emprestimo_data_entrega;
@@ -72,6 +72,11 @@
         public function setEmprestimoLivros($emprestimo_livros){
             $this->emprestimo_livros = $emprestimo_livros;
         }
+
+        public function jsonSerialize(){
+            return get_object_vars($this);
+        }
+
 
         public function toString(){
             $str = '';
