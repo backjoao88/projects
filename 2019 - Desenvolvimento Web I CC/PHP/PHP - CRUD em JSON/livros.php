@@ -2,6 +2,8 @@
 
     include('header.php');
 
+    include('autoload.php')
+
 ?>
 
         <div class="table-wrapper">
@@ -19,42 +21,26 @@
             </div>
 
 
-            <table class="table table-striped table-hover">
+            <table id="tabela-livros" class="table table-striped table-hover">
             
                 <thead>
-                    <tr>
-						<th>
+                    <tr>    
+						<!--<th>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="selectAll">
 								<label for="selectAll"></label>
 							</span>
-						</th>
+						</th> -->
                         <th>ID</th>
                         <th>Nome</th>
-						<th>CPF</th>
+						<th>ISBN</th>
+						<th>Edicao</th>
+						<th>Data Publicacao</th>
+						<th>Autor</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-
-                        <td>Thomas Hardy</td>
-                        <td>thomashardy@mail.com</td>
-						<td>89 Chiaroscuro Rd, Portland, USA</td>
-
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-
-                    </tr>
 
                 </tbody>
 
@@ -165,5 +151,20 @@
 
 <?php
     include('footer.php');
+
+
+    $lista_livros = [];
+
+    $livroDAO = new LivroDAO();
+    $livroBO = new LivroBO($livroDAO);
+
+    $lista_livros = $livroBO->listarLivros();
+
+    foreach($lista_livros as $livro){
+        $livroJson = json_encode($livro);
+        echo "<script>inserirLinhaTabelaLivro('tabela-livros', $livroJson)</script>";
+    }  
+    
+
 ?>
 

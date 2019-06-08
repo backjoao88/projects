@@ -66,7 +66,7 @@
 		width: 60px;
 	}
 	table.table tr th:last-child {
-		width: 100px;
+		width: 150px;
 	}
     table.table-striped tbody tr:nth-of-type(odd) {
     	background-color: #fcfcfc;

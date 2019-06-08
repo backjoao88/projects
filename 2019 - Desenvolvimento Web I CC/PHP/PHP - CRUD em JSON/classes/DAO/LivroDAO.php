@@ -56,7 +56,8 @@
                                       ->comONome($livroArray['livro_nome'])
                                       ->cadastradoComOISBN($livroArray['livro_isbn'])
                                       ->criadoPeloAutor($livroArray['livro_autor'])
-                                      ->publicadoEm($livroArray['livro_data_publicacao']);
+                                      ->publicadoEm($livroArray['livro_data_publicacao'])
+                                      ->naEdicao($livroArray['edicao']);
                 $lista_livros_obj[] = $liv;
             } 
             $this->lista_livros = $lista_livros_obj;

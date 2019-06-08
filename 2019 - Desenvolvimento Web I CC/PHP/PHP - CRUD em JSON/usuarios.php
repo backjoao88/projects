@@ -3,14 +3,6 @@
     include('autoload.php');
     include('header.php');
 
-    $lista_usuarios = [];
-
-    $usuarioDAO = new UsuarioDAO();
-    $usuarioBO = new UsuarioBO($usuarioDAO);
-
-    $lista_usuarios = $usuarioBO->listarUsuarios();
-
-
 
 ?>
 
@@ -33,38 +25,17 @@
             
                 <thead>
                     <tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th>
                         <th>ID</th>
                         <th>Nome</th>
 						<th>CPF</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-
-                        <td>Thomas Hardy</td>
-                        <td>thomashardy@mail.com</td>
-						<td>89 Chiaroscuro Rd, Portland, USA</td>
-
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-
-                    </tr>
+                
+                <tr>
+                </tr>
 
                 </tbody>
 
@@ -166,6 +137,25 @@
             
 
 <?php
+
+
+
+
     include('footer.php');
+
+
+    $lista_usuarios = [];
+
+    $usuarioDAO = new UsuarioDAO();
+    $usuarioBO = new UsuarioBO($usuarioDAO);
+
+    $lista_usuarios = $usuarioBO->listarUsuarios();
+
+    foreach($lista_usuarios as $usuario){
+        $usuarioJson = json_encode($usuario);
+        echo "<script>inserirLinhaTabelaUsuario('tabela-usuarios', $usuarioJson)</script>";
+    }  
+    
+    
 ?>
 
