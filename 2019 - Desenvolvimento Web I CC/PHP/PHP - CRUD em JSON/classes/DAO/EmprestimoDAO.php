@@ -79,7 +79,7 @@
                     $emp = (new Emprestimo())->utilizandoOID($empArray['emprestimo_id'])
                                         ->naADataDeEntrega($empArray['emprestimo_data_entrega'])
                                         ->naDataDeDevolucao($empArray['emprestimo_data_devolucao'])
-                                        ->cadastradoComOUsuario($empArray['emprestimo_usuario_id'])
+                                        ->cadastradoComOBibliotecario($empArray['emprestimo_bibliotecario_id'])
                                         ->comAListaDeLivros($empArray['emprestimo_livros']);
                     $lista_emp_obj[] = $emp;                  
                 } 

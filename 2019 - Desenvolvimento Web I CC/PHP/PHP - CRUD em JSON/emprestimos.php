@@ -7,8 +7,8 @@
     $emprestimosDAO = new EmprestimoDAO();
     $emprestimoBO = new EmprestimoBO($emprestimosDAO);
 
-    $usuarioDAO = new UsuarioDAO();
-    $usuarioBO = new UsuarioBO($usuarioDAO);
+    $bibliotecarioDAO = new BibliotecarioDAO();
+    $bibliotecarioBO = new BibliotecarioBO($bibliotecarioDAO);
 
     $livroDAO = new LivroDAO();
     $livroBO = new LivroBO($livroDAO);
@@ -18,13 +18,13 @@
         $id                 = isset($_POST['id']) ? $_POST['id'] : 0;
         $data_entrega       = isset($_POST['data-entrega']) ? $_POST['data-entrega'] : '';
         $data_devolucao     = isset($_POST['data-devolucao']) ? $_POST['data-devolucao'] : '';
-        $usuarioId          = isset($_POST['usuarios']) ? $_POST['usuarios'] : '';
+        $bibliotecarioId          = isset($_POST['bibliotecarios']) ? $_POST['bibliotecarios'] : '';
         $livros             = isset($_POST['livros']) ? $_POST['livros'] : '';
 
-        $usuarioProcurar = (new Usuario())->utilizandoOID(intval($usuarioId));
+        $bibliotecarioProcurar = (new Bibliotecario())->utilizandoOID(intval($bibliotecarioId));
 
-        $usuario = $usuarioBO->procurarUsuarioPorId($usuarioProcurar);
-        echo json_encode($usuario);
+        $bibliotecario = $bibliotecarioBO->procurarBibliotecarioPorId($bibliotecarioProcurar);
+
         foreach($livros as $livroId){
             $livroProcurar = (new Livro())->utilizandoOID(intval($livroId));
             $livro = $livroBO->procurarLivroPorId($livroProcurar);
@@ -34,7 +34,7 @@
         $emp = (new Emprestimo())->utilizandoOID(intval($id))
                                 ->naADataDeEntrega($data_entrega)
                                 ->naDataDeDevolucao($data_devolucao)
-                                ->cadastradoComOUsuario($usuario)
+                                ->cadastradoComOBibliotecario($bibliotecario)
                                 ->comAListaDeLivros($lista_livros);
 
         $emprestimoBO->inserir($emp);
@@ -52,12 +52,12 @@
 
         $data_entrega       = isset($_POST['edit-data-ent']) ? $_POST['edit-data-ent'] : '';
         $data_devolucao     = isset($_POST['edit-data-dev']) ? $_POST['edit-data-dev'] : '';
-        $usuario            = isset($_POST['edit-usuarios']) ? $_POST['edit-usuarios'] : '';
+        $bibliotecario      = isset($_POST['edit-bibliotecarios']) ? $_POST['edit-bibliotecarios'] : '';
         $livros             = isset($_POST['edit-livros']) ? $_POST['edit-livros'] : '';
 
-        $usuarioProcurar = (new Usuario())->utilizandoOID(intval($usuario));
+        $bibliotecarioProcurar = (new Bibliotecario())->utilizandoOID(intval($bibliotecario));
 
-        $usuarioObj = $usuarioBO->procurarUsuarioPorId($usuarioProcurar);
+        $bibliotecarioObj = $bibliotecarioBO->procurarBibliotecarioPorId($bibliotecarioProcurar);
 
         foreach($livros as $livroId){
             $livroProcurar = (new Livro())->utilizandoOID(intval($livroId));
@@ -68,7 +68,7 @@
         $emp = (new Emprestimo())->utilizandoOID(intval($id))
                                 ->naADataDeEntrega($data_entrega)
                                 ->naDataDeDevolucao($data_devolucao)
-                                ->cadastradoComOUsuario($usuarioObj)
+                                ->cadastradoComOBibliotecario($bibliotecarioObj)
                                 ->comAListaDeLivros($lista_livros);
 
         $emprestimoBO->alterar($emp);
@@ -84,11 +84,10 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-						<h2>Tabela de Empréstimos</h2>
+						<h2>Empréstimos</h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Novo Empréstimo</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Deletar</span></a>						
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Novo Empréstimo</span></a>					
 					</div>
                 </div>
             </div>
@@ -101,7 +100,7 @@
                         <th>ID</th>
                         <th>Data Entrega</th>
 						<th>Data Devolucao</th>
-                        <th>Usuario</th>
+                        <th>Bibliotecario</th>
                         <th>Livros</th>
                     </tr>
                 </thead>
@@ -126,7 +125,7 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input name="id" type="number" class="form-control" required>
+                                    <input name="id" type="number" min="1"  class="form-control" required>
                                 </div>	
                                 <div class="form-group">
                                     <label>Data de Entrega</label>
@@ -137,14 +136,14 @@
                                     <input name="data-devolucao" type="date" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Usuário</label>
-                                    <select name="usuarios" id="usuarios" required> 
+                                    <label>Bibliotecario</label>
+                                    <select name="bibliotecarios" id="bibliotecarios" required> 
                                     <?php
 
-                                    $lista_usuarios = $usuarioBO->listarUsuarios();
+                                    $lista_bibliotecario = $bibliotecarioBO->listarBibliotecarios();
 
-                                        foreach($lista_usuarios as $usuario){
-                                            echo '<option value=' . $usuario->getUsuarioID() .   '>' . $usuario->getUsuarioNome() . '</option>';
+                                        foreach($lista_bibliotecario as $bibliotecario){
+                                            echo '<option value=' . $bibliotecario->getBibliotecarioID() .   '>' . $bibliotecario->getBibliotecarioNome() . '</option>';
                                         }
 
                                     ?>
@@ -196,14 +195,14 @@
                                     <input id="edit-data-dev" name="edit-data-dev" type="date" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Usuário</label>
-                                    <select id="edit-usuarios" name="edit-usuarios" required>
+                                    <label>Bibliotecario</label>
+                                    <select id="edit-bibliotecarios" name="edit-bibliotecarios" required>
                                     <?php
 
-                                    $lista_usuarios = $usuarioBO->listarUsuarios();
+                                    $lista_bibliotecarios = $bibliotecarioBO->listarBibliotecarios();
 
-                                        foreach($lista_usuarios as $usuario){
-                                            echo '<option value=' . $usuario->getUsuarioID() .   '>' . $usuario->getUsuarioNome() . '</option>';
+                                        foreach($lista_bibliotecarios as $bibliotecario){
+                                            echo '<option value=' . $bibliotecario->getBibliotecarioID() .   '>' . $bibliotecario->getBibliotecarioNome() . '</option>';
                                         }
 
                                     ?>
@@ -259,6 +258,7 @@
             
 
 <?php
+
     include('footer.php');
 
     $lista_emps = [];

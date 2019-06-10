@@ -4,11 +4,9 @@
 
     include('header.php');
 
-    // Usuario
+    // Bibliotecario
 
-    $usuario = (new Usuario())->utilizandoOID(1)
-                              ->cadastradoComOLogin('123')
-                              ->cadastradoComASenha('123')
+    $bibliotecario = (new Bibliotecario())->utilizandoOID(1)
                               ->comONome('123321321')
                               ->utilizandoOCpf('1212121');
 
@@ -62,20 +60,20 @@
     $emprestimo = (new Emprestimo())->utilizandoOID(1)
                           ->naADataDeEntrega(date('Y-m-d'))
                           ->naDataDeDevolucao(date('Y-m-d'))
-                          ->cadastradoComOUsuario($usuario)
+                          ->cadastradoComOBibliotecario($bibliotecario)
                           ->comAListaDeLivros($listalivros);
 
     $emprestimo1 = (new Emprestimo())->utilizandoOID(2)
                           ->naADataDeEntrega(date('Y-m-d'))
                           ->naDataDeDevolucao(date('Y-m-d'))
-                          ->cadastradoComOUsuario($usuario)
+                          ->cadastradoComOBibliotecario($bibliotecario)
                           ->comAListaDeLivros($listalivros);
 
 
     $emprestimo2 = (new Emprestimo())->utilizandoOID(3)
                           ->naADataDeEntrega(date('Y-m-d'))
                           ->naDataDeDevolucao(date('Y-m-d'))
-                          ->cadastradoComOUsuario($usuario)
+                          ->cadastradoComOBibliotecario($bibliotecario)
                           ->comAListaDeLivros($listalivros);
 
     $emprestimoDAO = new EmprestimoDAO();
@@ -91,7 +89,7 @@
     $emprestimo3 = (new Emprestimo())->utilizandoOID(3)
                           ->naADataDeEntrega(date('Y-m-d'))
                           ->naDataDeDevolucao(date('Y-m-d'))
-                          ->cadastradoComOUsuario($usuario)
+                          ->cadastradoComOBibliotecario($bibliotecario)
                           ->comAListaDeLivros($listalivros2);
 
 
@@ -101,13 +99,23 @@
     $emprestimo4 = (new Emprestimo())->utilizandoOID(1)
                           ->naADataDeEntrega(date('Y-m-d'))
                           ->naDataDeDevolucao(date('Y-m-d'))
-                          ->cadastradoComOUsuario($usuario)
+                          ->cadastradoComOBibliotecario($bibliotecario)
                           ->comAListaDeLivros($listalivros);
     
     $emprestimoBO->excluir($emprestimo4);
 
     echo '<br> <br> DEPOIS <br>';
     echo json_encode($emprestimoBO->listarEmprestimos());
+
+    $test = (new Emprestimo())->utilizandoOID(2);
+
+    $test = $emprestimoBO->procurarEmprestimoPorId($test);
+    
+
+    echo '<br> <br>';
+
+
+    echo json_encode($test);
 
     include('footer.php');
 

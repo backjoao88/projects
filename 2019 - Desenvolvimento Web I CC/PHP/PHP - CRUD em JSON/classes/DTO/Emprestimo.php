@@ -2,17 +2,11 @@
 
     class Emprestimo implements JsonSerializable{
 
-        public static $contador = 0;
-
         private $emprestimo_id;
         private $emprestimo_data_entrega;
         private $emprestimo_data_devolucao;
-        private $emprestimo_usuario_id;
+        private $emprestimo_bibliotecario_id;
         private $emprestimo_livros = [];
-
-        public function __construct(){
-            Emprestimo::$contador++;
-        }
 
         public function utilizandoOID($emprestimo_id){
             $this->setEmprestimoId($emprestimo_id);
@@ -29,8 +23,8 @@
             return $this;
         }
 
-        public function cadastradoComOUsuario($emprestimo_usuario){
-            $this->setEmprestimoUsuarioId($emprestimo_usuario);
+        public function cadastradoComOBibliotecario($emprestimo_bibliotecario){
+            $this->setEmprestimoBibliotecarioId($emprestimo_bibliotecario);
             return $this;
         }
 
@@ -63,12 +57,12 @@
             $this->emprestimo_data_devolucao = $emprestimo_data_devolucao;
         }
 
-        public function getEmprestimoUsuarioId(){
-            return $this->emprestimo_usuario_id;
+        public function getEmprestimoBibliotecarioId(){
+            return $this->emprestimo_bibliotecario_id;
         }
 
-        public function setEmprestimoUsuarioId($emprestimo_usuario_id){
-            $this->emprestimo_usuario_id = $emprestimo_usuario_id;
+        public function setEmprestimoBibliotecarioId($emprestimo_bibliotecario_id){
+            $this->emprestimo_bibliotecario_id = $emprestimo_bibliotecario_id;
         }
 
         public function getEmprestimoLivros(){
@@ -81,22 +75,6 @@
 
         public function jsonSerialize(){
             return get_object_vars($this);
-        }
-
-
-        public function toString(){
-            
-            $str = '';
-            foreach($this->getEmprestimoLivros() as $livro){
-                $str .= '<br>' . $livro->toString();
-            }
-
-            return 'Emprestimo -> '     . ', ' . 
-                    'ID: '              . $this->getEmprestimoId() . ', ' . 
-                    'Data Entrega: '    . $this->getEmprestimoDataEntrega() . ', ' . 
-                    'Data Devolucao: '  . $this->getEmprestimoDataDevolucao() . ', ' . 
-                    'Usuario ID: '      . $this->getEmprestimoUsuarioId()->toString() . ', ' . 
-                    'Livros: '          . $str;
         }
 
     }

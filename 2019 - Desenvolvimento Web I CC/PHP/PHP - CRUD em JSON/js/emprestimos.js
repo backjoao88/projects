@@ -1,6 +1,8 @@
 
 function inserirLinhaTabelaEmprestimo(idTabela, emp) {
 
+    console.log(emp)
+
     var tabela_emp                          = document.getElementById(idTabela).getElementsByTagName('tbody')[0]
 
     var num_linhas_tabela_emp               = tabela_emp.rows.length;
@@ -10,7 +12,7 @@ function inserirLinhaTabelaEmprestimo(idTabela, emp) {
     var coluna_id                           = linha_tabela_emp.insertCell(0)
     var coluna_data_entrega                 = linha_tabela_emp.insertCell(1)
     var coluna_data_devolucao               = linha_tabela_emp.insertCell(2)
-    var coluna_usuario                      = linha_tabela_emp.insertCell(3)
+    var coluna_bibliotecario                = linha_tabela_emp.insertCell(3)
     var coluna_livros                       = linha_tabela_emp.insertCell(4)
     var coluna_acoes                        = linha_tabela_emp.insertCell(5)
 
@@ -18,7 +20,7 @@ function inserirLinhaTabelaEmprestimo(idTabela, emp) {
     coluna_id.innerHTML                     = emp.emprestimo_id
     coluna_data_entrega.innerHTML           = emp.emprestimo_data_entrega
     coluna_data_devolucao.innerHTML         = emp.emprestimo_data_devolucao
-    coluna_usuario.innerHTML                = emp.emprestimo_usuario_id.usuario_nome
+    coluna_bibliotecario.innerHTML          = emp.emprestimo_bibliotecario_id.bibliotecario_nome
 
     var ul = document.createElement('ul')
 
@@ -65,13 +67,13 @@ function inserirLinhaTabelaEmprestimo(idTabela, emp) {
         document.getElementById('edit-data-ent').value      = tds[1].innerHTML;
         document.getElementById('edit-data-dev').value      = tds[2].innerHTML;
 
-        // USUÁRIO
+        // BIBLIOTECARIO
 
         var nome_selecionado = tds[3].innerHTML;
+        
+        var selectBibliotecarios = document.getElementById('edit-bibliotecarios');
 
-        var selectUsuarios = document.getElementById('edit-usuarios');
-
-        var options = selectUsuarios.getElementsByTagName('option');
+        var options = selectBibliotecarios.getElementsByTagName('option');
 
         for (let i = 0 ; i < options.length; i++){
             if(options[i].innerHTML === nome_selecionado){

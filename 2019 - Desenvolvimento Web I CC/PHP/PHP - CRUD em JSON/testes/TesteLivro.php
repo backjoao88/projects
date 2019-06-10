@@ -43,5 +43,15 @@
     $livroBO->excluir($livro4);
     echo '<br> <br> DEPOIS <br>';
     echo json_encode($livroBO->listarLivros());
+
+    $test = (new Livro())->utilizandoOID(3);
+
+
+    $test = $livroBO->procurarLivroPorId($test);
+    
+    echo $test->toString();
+
+
+
     include('footer.php');
 ?>

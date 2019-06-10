@@ -55,6 +55,10 @@
             } 
         }
 
+        public function procurarLivroPorNome(){
+
+        }
+
         public function listarLivros(){
             return $this->ler();
         }

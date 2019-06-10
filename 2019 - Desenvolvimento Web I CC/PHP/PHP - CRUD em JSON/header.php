@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>CRUD </title>
+    <title>Biblioteca JPB</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
@@ -18,6 +18,12 @@
 		background: #f5f5f5;
 		font-family: 'Varela Round', sans-serif;
 		font-size: 13px;
+	}
+
+	#footer{
+		position: fixed;
+		bottom: 0;
+		height: 40px;
 	}
 	.table-wrapper {
         background: #fff;
@@ -240,6 +246,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>	
   
 </head>
 <body>
@@ -252,20 +259,19 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
+			<li class="nav-item active">
+        		<a class="nav-link" href="index.php" aria-haspopup="true" aria-expanded="false">Home</a>
+      		</li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Cadastros
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="usuarios.php">Usuários</a>
+                  <a class="dropdown-item" href="bibliotecarios.php">Bibliotecarios</a>
                   <a class="dropdown-item" href="livros.php">Livros</a>
                   <a class="dropdown-item" href="emprestimos.php">Empréstimos</a>
                 </div>
             </li>
-            </div>
-
-            <div class="navbar-nav ml-auto">
-                <a href="#" class="nav-item nav-link">Logoff</a>
             </div>
 
         </div>

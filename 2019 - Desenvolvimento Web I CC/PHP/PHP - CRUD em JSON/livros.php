@@ -68,8 +68,7 @@
 						<h2>Tabela de Livros</h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Novo Livro</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Deletar</span></a>						
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Novo Livro</span></a>					
 					</div>
                 </div>
             </div>
@@ -107,7 +106,7 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input name="id" type="number" class="form-control" required>
+                                    <input name="id" type="number" min="1" class="form-control" required>
                                 </div>	
                                 <div class="form-group">
                                     <label>Nome</label>
@@ -115,7 +114,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>ISBN</label>
-                                    <input name="isbn" type="text" class="form-control" required>
+                                    <input pattern="^(?:ISBN(?:-10)?:?\)?(?=[0-9X]{10}$|(?=(?:[0-9]+[-\]){3})[-\0-9X]{13}$)[0-9]{1,5}[-\]?[0-9]+[-\]?[0-9]+[-\]?[0-9X]$"id="isbn" name="isbn" type="text" class="form-control" required>
+                                    <script type="text/javascript">
+                                    
+                                       // $('#isbn').mask('', {reverse: true});
+
+                                    </script>
                                 </div>
                                 <div class="form-group">
                                     <label>Edicao</label>
