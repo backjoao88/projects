@@ -6,7 +6,11 @@
     <title>CRUD </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
     <link rel="stylesheet" href="<?php echo BASEURL; ?>css/bootstrap.min.css">
     <style type="text/css">
     body {

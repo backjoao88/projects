@@ -1,7 +1,11 @@
+var id_selecionado = 0;
+
 
 function inserirLinhaTabelaLivro(idTabela, liv) {
+ 
+    var tabela_livros                  = document.getElementById(idTabela).getElementsByTagName('tbody')[0]
 
-    var tabela_livros                   = document.getElementById(idTabela).getElementsByTagName('tbody')[0]
+    tabela_livros.setAttribute("name", "table_rows")
 
     var num_linhas_tabela_livros        = tabela_livros.rows.length;
 
@@ -14,7 +18,7 @@ function inserirLinhaTabelaLivro(idTabela, liv) {
     var coluna_data_pub         = linha_tabela_livros.insertCell(4)
     var coluna_autor            = linha_tabela_livros.insertCell(5)
     var coluna_acoes            = linha_tabela_livros.insertCell(6)
-    
+  
     coluna_id.innerHTML         = liv.livro_id
     coluna_nome.innerHTML       = liv.livro_nome
     coluna_isbn.innerHTML       = liv.livro_isbn
@@ -22,7 +26,7 @@ function inserirLinhaTabelaLivro(idTabela, liv) {
     coluna_data_pub.innerHTML   = liv.livro_data_publicacao
     coluna_autor.innerHTML      = liv.livro_autor
 
-    // Para os links de editar e delear
+    // Para os links de editar e deletar
     var a_editar          = document.createElement('a')
     var a_deletar         = document.createElement('a')
 
@@ -44,10 +48,38 @@ function inserirLinhaTabelaLivro(idTabela, liv) {
     a_editar.dataset      = 'modal'
     a_editar.setAttribute('data-toggle', 'modal')
 
+    a_editar.onclick = function(){
+
+        var tr = a_editar.parentNode.parentNode.parentNode.firstChild.innerHTML;
+        id_selecionado = parseInt(tr); 
+        history.pushState(null, null, "livros.php?id=" + id_selecionado);
+
+        var row = a_editar.parentNode.parentNode.parentNode.rowIndex-1;
+        var tr = tabela_livros.getElementsByTagName('tr')[row];
+        var tds = tr.getElementsByTagName('td')
+
+        document.getElementById('edit-nome').value = tds[1].innerHTML;
+        document.getElementById('edit-isbn').value = tds[2].innerHTML;
+        document.getElementById('edit-edicao').value = tds[3].innerHTML;
+        document.getElementById('edit-data-pub').value = tds[4].innerHTML;
+        document.getElementById('edit-autor').value = tds[5].innerHTML;
+    }
+
     a_deletar.href        = '#deleteEmployeeModal'
     a_deletar.className   = 'delete'
     a_deletar.dataset     = 'modal'
     a_deletar.setAttribute('data-toggle', 'modal')
+  
+    a_deletar.onclick = function(){
+        var tr = a_deletar.parentNode.parentNode.parentNode.firstChild.innerHTML;
+        id_selecionado = parseInt(tr); 
+        history.pushState(null, null, "livros.php?id=" + id_selecionado);
+    }
+
+    a_deletar.addEventListener('deletar-livro', function(){
+        var tr = a_deletar.parentNode.parentNode.parentNode.rowIndex-1; 
+        tabela_livros.deleteRow(tr)
+    })
 
     var acoes             = document.createElement('td')
 
@@ -56,7 +88,8 @@ function inserirLinhaTabelaLivro(idTabela, liv) {
     acoes.appendChild(a_deletar)
     a_deletar.appendChild(i2)
     
-
     coluna_acoes.appendChild(acoes)
 
 }
+
+

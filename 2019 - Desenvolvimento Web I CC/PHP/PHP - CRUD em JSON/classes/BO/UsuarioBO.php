@@ -22,6 +22,14 @@ include('autoload.php');
             $this->pusuario->excluir($usuario);            
         }
 
+        public function existe(Usuario $usuario){
+            $this->pusuario->existe($usuario);            
+        }
+
+        public function procurarUsuarioPorId(Usuario $usuario){
+            return $this->pusuario->procurarUsuarioPorId($usuario);            
+        }
+
         public function listarUsuarios(){
             return $this->pusuario->listarUsuarios();   
         }

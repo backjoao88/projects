@@ -23,6 +23,15 @@
             $this->plivro->excluir($livro);            
         }
 
+        public function existe(Livro $livro){
+            $this->plivro->existe($livro);            
+        }
+
+        public function procurarLivroPorId(Livro $livro){
+            return $this->plivro->procurarLivroPorId($livro);            
+        }
+
+
         public function listarLivros(){
             return $this->plivro->listarLivros();   
         }

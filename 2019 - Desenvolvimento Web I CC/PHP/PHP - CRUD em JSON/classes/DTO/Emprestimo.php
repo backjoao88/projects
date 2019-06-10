@@ -2,11 +2,17 @@
 
     class Emprestimo implements JsonSerializable{
 
+        public static $contador = 0;
+
         private $emprestimo_id;
         private $emprestimo_data_entrega;
         private $emprestimo_data_devolucao;
         private $emprestimo_usuario_id;
         private $emprestimo_livros = [];
+
+        public function __construct(){
+            Emprestimo::$contador++;
+        }
 
         public function utilizandoOID($emprestimo_id){
             $this->setEmprestimoId($emprestimo_id);
@@ -79,6 +85,7 @@
 
 
         public function toString(){
+            
             $str = '';
             foreach($this->getEmprestimoLivros() as $livro){
                 $str .= '<br>' . $livro->toString();

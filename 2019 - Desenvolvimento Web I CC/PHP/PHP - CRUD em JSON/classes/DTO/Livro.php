@@ -2,12 +2,18 @@
 
     class Livro implements JsonSerializable{
 
+        public static $contador = 1;
+
         private $livro_id;
         private $livro_nome;
         private $livro_isbn;
         private $livro_edicao;
         private $livro_data_publicacao;
         private $livro_autor;
+
+        public function __construct(){
+            Livro::$contador++;
+        }
 
         public function utilizandoOID($livro_id){
             $this->setLivroId($livro_id);

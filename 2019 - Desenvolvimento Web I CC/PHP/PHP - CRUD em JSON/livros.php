@@ -1,8 +1,62 @@
 <?php
 
+
     include('header.php');
 
-    include('autoload.php')
+    include('autoload.php');
+
+    $livroDAO = new LivroDAO();
+    $livroBO = new LivroBO($livroDAO);
+
+    if(isset($_POST['adicionar-livro'])){
+
+        $id        = isset($_POST['id']) ? $_POST['id'] : 0;
+        $isbn      = isset($_POST['isbn']) ?$_POST['isbn'] : '';
+        $nome      = isset($_POST['nome']) ?$_POST['nome'] : '';
+        $edicao    = isset($_POST['edicao']) ?$_POST['edicao'] : '';
+        $data      = isset($_POST['data-publicacao']) ?$_POST['data-publicacao'] : '';
+        $autor     = isset($_POST['autor']) ?$_POST['autor'] : '';
+
+        $livro = (new Livro())->utilizandoOID(intval($id))
+                                        ->comONome($nome)
+                                        ->cadastradoComOISBN($isbn)
+                                        ->naEdicao($edicao)
+                                        ->publicadoEm($data)
+                                        ->criadoPeloAutor($autor);
+        $livroBO->inserir($livro);
+
+    }
+
+
+    if(isset($_POST['deletar-livro'])){
+        $linha_selecionada = $_GET['id'];
+        $liv = (new Livro())->utilizandoOID(intval($linha_selecionada));
+        $livroBO->excluir($liv);
+    }
+
+    if(isset($_POST['editar-livro'])){
+
+        $id        = $_GET['id'];
+        
+        $isbn      = isset($_POST['edit-isbn']) ? $_POST['edit-isbn'] : '';
+        $nome      = isset($_POST['edit-nome']) ? $_POST['edit-nome'] : '';
+        $edicao    = isset($_POST['edit-edicao']) ? $_POST['edit-edicao'] : '';
+        $data      = isset($_POST['edit-data-pub']) ? $_POST['edit-data-pub'] : '';
+        $autor     = isset($_POST['edit-autor']) ? $_POST['edit-autor'] : ''; 
+
+
+
+        $livro = (new Livro())->utilizandoOID(intval($id))
+                                ->comONome($nome)
+                                ->cadastradoComOISBN($isbn)
+                                ->naEdicao($edicao)
+                                ->publicadoEm($data)
+                                ->criadoPeloAutor($autor);
+        
+        echo $livroBO->alterar($livro);
+
+    }
+
 
 ?>
 
@@ -25,18 +79,13 @@
             
                 <thead>
                     <tr>    
-						<!--<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th> -->
                         <th>ID</th>
                         <th>Nome</th>
 						<th>ISBN</th>
 						<th>Edicao</th>
 						<th>Data Publicacao</th>
 						<th>Autor</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
 
@@ -50,36 +99,41 @@
             <div id="addEmployeeModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form>
+                        <form method="POST">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Adicionar Livro</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
-                            <div class="modal-body">	
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input name="id" type="number" class="form-control" required>
+                                </div>	
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="text" class="form-control" required>
+                                    <input name="nome" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>ISBN</label>
-                                    <input type="text" class="form-control" required>
+                                    <input name="isbn" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Edicao</label>
-                                    <input type="text" class="form-control" required>
+                                    <input name="edicao" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Data Publicação</label>
-                                    <input type="date" class="form-control" required>
+                                    <input name="data-publicacao" type="date" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Autor</label>
-                                    <input type="text" class="form-control" required>
-                                </div>							
+                                    <input name="autor" type="text" class="form-control" required>
+                                </div>	
+                                					
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                <input type="submit" class="btn btn-success" value="Adicionar">
+                                <input name="adicionar-livro" type="submit" class="btn btn-success" value="Adicionar">
                             </div>
                         </form>
                     </div>
@@ -90,7 +144,7 @@
             <div id="editEmployeeModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form>
+                        <form method="POST">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Editar Livro</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -98,28 +152,28 @@
                             <div class="modal-body">	
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="text" class="form-control" required>
+                                    <input id="edit-nome" name="edit-nome" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>ISBN</label>
-                                    <input type="text" class="form-control" required>
+                                    <input id="edit-isbn" name="edit-isbn" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Edicao</label>
-                                    <input type="text" class="form-control" required>
+                                    <input id="edit-edicao" name="edit-edicao" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Data Publicação</label>
-                                    <input type="date" class="form-control" required>
+                                    <input id="edit-data-pub" name="edit-data-pub" type="date" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Autor</label>
-                                    <input type="text" class="form-control" required>
+                                    <input id="edit-autor" name="edit-autor" type="text" class="form-control" required>
                                 </div>							
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                <input type="submit" class="btn btn-info" value="Salvar">
+                                <input name="editar-livro" type="submit" class="btn btn-info" value="Salvar">
                             </div>
                         </form>
                     </div>
@@ -130,7 +184,7 @@
             <div id="deleteEmployeeModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form>
+                        <form method="POST">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Deletar Livro</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -141,7 +195,7 @@
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                <input type="submit" class="btn btn-danger" value="Deletar">
+                                <input id="deletar-livro" name="deletar-livro" type="submit" class="btn btn-danger" value="Deletar">
                             </div>
                         </form>
                     </div>
@@ -150,6 +204,7 @@
             
 
 <?php
+
     include('footer.php');
 
 

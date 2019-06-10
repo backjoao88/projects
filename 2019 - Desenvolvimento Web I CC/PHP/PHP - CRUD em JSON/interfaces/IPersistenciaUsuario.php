@@ -4,6 +4,8 @@
         public function inserir(Usuario $usuario);
         public function alterar(Usuario $usuario);
         public function excluir(Usuario $usuario);
+        public function existe(Usuario $usuario);
+        public function procurarUsuarioPorId(Usuario $usuario);
         public function listarUsuarios();  
 
     }

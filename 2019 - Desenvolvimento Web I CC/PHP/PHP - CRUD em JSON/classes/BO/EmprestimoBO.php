@@ -23,8 +23,20 @@ include('autoload.php');
             $this->pemprestimo->excluir($emprestimo);            
         }
 
+        public function existe(Emprestimo $emprestimo){
+            $this->pemprestimo->existe($emprestimo);            
+        }
+
+        public function procurarEmprestimoPorId(Emprestimo $emprestimo){
+            return $this->pemprestimo->procurarEmprestimoPorId($emprestimo);            
+        }
+
         public function listarEmprestimos(){
             return $this->pemprestimo->listarEmprestimos();   
+        }
+
+        public function listarLivrosEmprestimo(){
+            return $this->pemprestimo->listarLivrosEmprestimo();
         }
 
     }

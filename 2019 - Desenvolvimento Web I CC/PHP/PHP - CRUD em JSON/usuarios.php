@@ -1,7 +1,59 @@
+
 <?php
 
+
     include('autoload.php');
+
     include('header.php');
+
+    
+    $usuarioDAO = new UsuarioDAO();
+    $usuarioBO = new UsuarioBO($usuarioDAO);
+
+    if(isset($_POST['adicionar-usuario'])){
+
+        $id             = isset($_POST['id']) ? $_POST['id'] : '';
+        $nome_usuario   = isset($_POST['usuario-nome']) ? $_POST['usuario-nome'] : '';
+        $login_usuario  = isset($_POST['usuario-login']) ? $_POST['usuario-login'] : '';
+        $senha_usuario  = isset($_POST['usuario-senha']) ? $_POST['usuario-senha'] : '';
+        $cpf_usuario    = isset($_POST['usuario-cpf']) ? $_POST['usuario-cpf'] : '';
+
+        $usu = (new Usuario())->utilizandoOID(intval($id))
+                            ->cadastradoComOLogin($login_usuario)
+                            ->cadastradoComASenha($senha_usuario)
+                            ->comONome($nome_usuario)
+                            ->utilizandoOCpf($cpf_usuario);
+
+        $usuarioBO->inserir($usu);
+    }
+
+    if(isset($_POST['deletar-usuario'])){
+        $linha_selecionada = $_GET['id'];
+        $usu = (new Usuario())->utilizandoOID(intval($linha_selecionada));
+        $usuarioBO->excluir($usu);
+
+    }
+
+    if(isset($_POST['editar-usuario'])){
+        
+        $id             = $_GET['id'];
+        $nome_usuario   = isset($_POST['edit-nome']) ? $_POST['edit-nome'] : '';
+        $login_usuario  = isset($_POST['edit-login']) ? $_POST['edit-login'] : '';
+        $senha_usuario  = isset($_POST['edit-senha']) ? $_POST['edit-senha'] : '';
+        $cpf_usuario    = isset($_POST['edit-cpf']) ? $_POST['edit-cpf'] : '';
+
+        $usu = (new Usuario())->utilizandoOID(intval($id))
+                            ->cadastradoComOLogin($login_usuario)
+                            ->cadastradoComASenha($senha_usuario)
+                            ->comONome($nome_usuario)
+                            ->utilizandoOCpf($cpf_usuario);
+
+        echo $usuarioBO->alterar($usu);
+
+
+
+    }
+
 
 
 ?>
@@ -26,6 +78,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Login</th>
+                        <th>Senha</th>
                         <th>Nome</th>
 						<th>CPF</th>
                         <th>Ações</th>
@@ -45,32 +99,36 @@
             <div id="addEmployeeModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form>
+                        <form method="POST" enctype="multipart/form-data" autocomplete="off">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Adicionar Usuário</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
-                            <div class="modal-body">					
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input name="id" type="number" class="form-control" required>
+                                </div>						
                                 <div class="form-group">
                                     <label>Login</label>
-                                    <input type="text" class="form-control" required>
+                                    <input name="usuario-login" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Senha</label>
-                                    <input type="password" class="form-control" required>
+                                    <input name="usuario-senha" type="password" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="text" class="form-control" required>
+                                    <input name="usuario-nome" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>CPF</label>
-                                    <input type="text" class="form-control" required>
+                                    <input name="usuario-cpf" type="text" class="form-control" required>
                                 </div>					
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                <input type="submit" class="btn btn-success" value="Adicionar">
+                                <input name='adicionar-usuario' type="submit" class="btn btn-success" value="Adicionar">
                             </div>
                         </form>
                     </div>
@@ -81,7 +139,7 @@
             <div id="editEmployeeModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form>
+                        <form method="POST">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Editar Usuário</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -89,24 +147,24 @@
                             <div class="modal-body">					
                                 <div class="form-group">
                                     <label>Login</label>
-                                    <input type="text" class="form-control" required>
+                                    <input id="edit-login" name="edit-login" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Senha</label>
-                                    <input type="password" class="form-control" required>
+                                    <input id="edit-senha" name="edit-senha" type="password" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="text" class="form-control" required>
+                                    <input id="edit-nome" name="edit-nome" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>CPF</label>
-                                    <input type="text" class="form-control" required>
+                                    <input id="edit-cpf" name="edit-cpf" type="text" class="form-control" required>
                                 </div>					
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                <input type="submit" class="btn btn-info" value="Salvar">
+                                <input name="editar-usuario" type="submit" class="btn btn-info" value="Salvar">
                             </div>
                         </form>
                     </div>
@@ -117,7 +175,7 @@
             <div id="deleteEmployeeModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form>
+                        <form method="POST">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Deletar Usuário</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -128,7 +186,7 @@
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                <input type="submit" class="btn btn-danger" value="Deletar">
+                                <input name="deletar-usuario" type="submit" class="btn btn-danger" value="Deletar">
                             </div>
                         </form>
                     </div>
@@ -145,9 +203,6 @@
 
 
     $lista_usuarios = [];
-
-    $usuarioDAO = new UsuarioDAO();
-    $usuarioBO = new UsuarioBO($usuarioDAO);
 
     $lista_usuarios = $usuarioBO->listarUsuarios();
 

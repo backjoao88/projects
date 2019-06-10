@@ -1,12 +1,18 @@
 <?php
 
     class Usuario implements JsonSerializable{
+
+        private static $contador = 1;
         
         private $usuario_id;
         private $usuario_login;
         private $usuario_senha;
         private $usuario_nome;
         private $usuario_cpf;
+
+        public function __construct(){
+            Usuario::$contador++;
+        }
 
         public function utilizandoOID($usuario_id){
             $this->setUsuarioId($usuario_id);
@@ -42,7 +48,7 @@
         }
 
         public function getUsuarioLogin(){
-                return $this->usuario_login;
+            return $this->usuario_login;
         }
 
         public function setUsuarioLogin($usuario_login){
@@ -54,7 +60,7 @@
         }
 
         public function setUsuarioSenha($usuario_senha){
-            $this->usuario_senha = $usuario_senha;
+            $this->usuario_senha = sha1($usuario_senha);
         }
 
         public function getUsuarioNome(){
