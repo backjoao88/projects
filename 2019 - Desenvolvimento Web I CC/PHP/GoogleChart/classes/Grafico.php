@@ -1,13 +1,13 @@
 <?php
 
-    class Grafico{
+    class Grafico implements JsonSerializable{
 
         private $titulo;
         private $legenda;
         private $desc_coluna;
         private $desc_linha;
-        private $valoresX;
-        private $valoresY;
+        private $valoresX = [];
+        private $valoresY = []; 
 
         public function comOTitulo($titulo){
             $this->setTitulo($titulo);
@@ -85,6 +85,10 @@
 
         public function setValoresY($valoresY){
             $this->valoresY = $valoresY;
+        }
+
+        public function jsonSerialize(){
+            return get_object_vars($this);
         }
 
         public function toString(){
