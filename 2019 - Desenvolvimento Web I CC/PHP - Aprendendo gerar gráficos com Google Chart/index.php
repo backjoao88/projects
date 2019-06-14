@@ -2,12 +2,12 @@
 
     include('autoload.php');    
 
-    $grafico = (new Pizza())->comOTitulo("Ts")
-                                ->legendadoCom("Legenda")
-                                ->utilizandoADescricaoX("DescX")
-                                ->utilizandoADescricaoY("DescY")
-                                ->comOsValoresX(["Teste1","Teste2","Teste3","Teste4","Teste5"])
-                                ->comOsValoresY([2,3,4,5,6]);
+    $grafico = (new Pizza())->comOTitulo("Número de alunos em uma escola por série")
+                                ->legendadoCom("Teste")
+                                ->utilizandoADescricaoX("Série do Aluno")
+                                ->utilizandoADescricaoY("Número de Alunos")
+                                ->comOsValoresX(["7º ano","6º ano","5º ano"])
+                                ->comOsValoresY([23,32,21]);
 
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode($grafico);
