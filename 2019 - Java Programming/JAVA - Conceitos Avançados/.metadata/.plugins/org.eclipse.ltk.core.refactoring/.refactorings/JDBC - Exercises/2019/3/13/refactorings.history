@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;CD&apos; to &apos;Cd&apos;&#x0A;- Original project: &apos;JDBC - Exercises&apos;&#x0A;- Original element: &apos;CD&apos;&#x0A;- Renamed element: &apos;Cd&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;CD&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{CD.java[CD" matchStrategy="1" name="Cd" qualified="false" references="true" similarDeclarations="false" stamp="1553711088176" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,9 @@
+package jpb.exercicio3;
+
+public class Buffer {
+	
+	private int itens = 0;
+	
+	
+
+}

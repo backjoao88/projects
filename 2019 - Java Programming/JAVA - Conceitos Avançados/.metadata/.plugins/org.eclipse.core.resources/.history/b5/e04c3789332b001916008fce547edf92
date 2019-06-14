@@ -1,0 +1,24 @@
+package jpb.exercicio3;
+
+public class Buffer {
+
+	private int itens = 0;
+
+	public int getItens() {
+		return itens;
+	}
+
+	public void setItens(int itens) {
+		this.itens = itens;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Buffer [itens=");
+		builder.append(itens);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

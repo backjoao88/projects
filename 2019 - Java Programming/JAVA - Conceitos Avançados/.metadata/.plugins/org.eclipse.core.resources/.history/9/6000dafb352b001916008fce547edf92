@@ -1,0 +1,20 @@
+package jpb.exercicio3;
+
+public class Main {
+	
+	static final int NUM_PRODUTORES = 10;
+	static final int NUM_CONSUMIDORES = 5;
+	
+	public static void main(String[] args) {
+		
+		Buffer buffer = new Buffer();
+		
+		Consumidor consumidor = new Consumidor(buffer);
+		Produtor produtor = new Produtor(buffer);
+		
+		
+		
+		
+	}
+
+}

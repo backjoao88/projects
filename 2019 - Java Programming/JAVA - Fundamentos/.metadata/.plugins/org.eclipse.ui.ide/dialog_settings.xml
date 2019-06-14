@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\João Paulo Back\Desktop\Cursos\1 - Curso de Fundamentos de Java (JV-01) - Softblue\Aula17 - Mao na Massa Criando Aplicacoes na Pratica\Codigo-Fonte\Mod-17__Cf-03.zip"/>
+		<item value="C:\Users\João Paulo Back\Desktop\Cursos\1 - Curso de Fundamentos de Java (JV-01) - Softblue\Aula17 - Mao na Massa Criando Aplicacoes na Pratica\Codigo-Fonte\MM_JogoForca"/>
+		<item value="C:\Users\João Paulo Back\Desktop\Cursos\1 - Curso de Fundamentos de Java (JV-01) - Softblue\Aula17 - Mao na Massa Criando Aplicacoes na Pratica\Codigo-Fonte\Mod-17__Cf-02.zip"/>
+		<item value="C:\Users\João Paulo Back\Desktop\Cursos\1 - Curso de Fundamentos de Java (JV-01) - Softblue\Aula14 - Programacao Multithread e Sincronismo\Exercicio\Mod-14__Ex-02"/>
+		<item value="C:\Users\João Paulo Back\Desktop\Cursos\1 - Curso de Fundamentos de Java (JV-01) - Softblue\Aula14 - Programacao Multithread e Sincronismo\Exercicio\Mod-14__Ex-03"/>
+		<item value="C:\Users\João Paulo Back\Desktop\Mod-13__Ex-02"/>
+	</list>
+	<section name="SaveAsDialogSettings">
+		<item value="525" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="580" key="DIALOG_HEIGHT"/>
+		<item value="466" key="DIALOG_X_ORIGIN"/>
+		<item value="52" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

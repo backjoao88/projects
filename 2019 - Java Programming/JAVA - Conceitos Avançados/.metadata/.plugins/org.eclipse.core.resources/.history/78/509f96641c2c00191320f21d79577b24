@@ -1,0 +1,19 @@
+package jpb.exemplo1;
+
+import java.net.ServerSocket;
+
+public class TCPServidor {
+
+	public static void main(String[] args) throws Exception {
+	
+		ServerSocket socketServer = new ServerSocket(3000);
+		
+		
+		
+		
+		
+		
+
+	}
+
+}

@@ -1,0 +1,19 @@
+package jpb.exemplo1;
+
+import java.io.InputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TCPServidor {
+
+	public static void main(String[] args) throws Exception {
+
+		ServerSocket socketServer = new ServerSocket(3000);
+
+		Socket clientSocket = socketServer.accept();
+		
+		InputStream is = clientSocket.getInputStream();
+
+	}
+
+}

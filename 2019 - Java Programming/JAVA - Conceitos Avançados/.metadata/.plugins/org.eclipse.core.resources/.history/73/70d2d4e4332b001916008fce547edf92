@@ -1,0 +1,42 @@
+package jpb.exercicio3;
+
+import java.util.concurrent.locks.ReentrantLock;
+
+public class Buffer {
+
+	private final int MAX_ITENS_BUFFER = 10;
+	private final int MIN_ITENS_BUFFER = 0;
+
+	private int itens = 0;
+	private ReentrantLock lock = new ReentrantLock();
+
+	public int getItens() {
+		return itens;
+	}
+
+	public void setItens(int itens) {
+		lock.lock();
+		try {
+			this.itens = itens;
+		} finally {
+			lock.unlock();
+		}
+	}
+	public int getMaxItensBuffer() {
+		return MAX_ITENS_BUFFER;
+	}
+
+	public int getMinItensBuffer() {
+		return MIN_ITENS_BUFFER;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Buffer [itens=");
+		builder.append(itens);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

@@ -1,0 +1,19 @@
+func void main(){
+	if (nome==sei){
+		while(x<y){
+			int y = 0;
+		}
+		int tr = 5;
+	}
+	
+	if (nome==sei){
+		while(x<y){
+			int j = 0;
+		}
+		int tr = 5;
+	}
+}
+
+func void somar(){
+	int t = 0;
+}

@@ -1,0 +1,9 @@
+package jpb.exercicio3;
+
+public class Consumidor {
+	
+	private Buffer buffer = null;
+	
+	
+
+}

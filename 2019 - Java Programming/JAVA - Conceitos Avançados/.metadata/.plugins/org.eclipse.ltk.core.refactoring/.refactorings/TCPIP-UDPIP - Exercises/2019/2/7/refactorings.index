@@ -1,0 +1,18 @@
+1549925109947	Delete element
+1549994311351	Delete element
+1549994312816	Delete element
+1549994314048	Delete element
+1549994314972	Delete element
+1549996224850	Delete element
+1549997670872	Rename local variable 'inCliente'
+1550010479498	Delete element
+1550018931805	Rename type 'ListenerCliente'
+1550019270365	Convert local variable 'inClient' to field
+1550084259510	Rename field 'inClient'
+1550084265491	Rename field 'outClient'
+1550084272463	Rename field 'inClient'
+1550087412788	Move compilation units
+1550166701704	Rename type 'Tabuleiro'
+1550166706369	Rename field 'tabuleiro'
+1550169597904	Rename local variable 'inClient'
+1550251176015	Rename local variable 'player'

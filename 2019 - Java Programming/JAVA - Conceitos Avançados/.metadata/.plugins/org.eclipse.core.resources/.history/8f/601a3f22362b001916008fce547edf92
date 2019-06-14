@@ -1,0 +1,23 @@
+package jpb.exercicio3;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Main {
+	
+	static final int NUM_PRODUTORES = 10;
+	static final int NUM_CONSUMIDORES = 5;
+	
+	public static void main(String[] args) {
+		
+		ExecutorService service = Executors.newFixedThreadPool(NUM_CONSUMIDORES+NUM_CONSUMIDORES);
+		
+		
+		Buffer buffer = new Buffer();
+		
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,44 @@
+package jpb.exercicio3;
+
+public class Consumidor implements Runnable {
+
+	private Buffer buffer = null;
+
+	public Consumidor(Buffer buffer) {
+		this.buffer = buffer;
+	}
+
+	public Buffer getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(Buffer buffer) {
+		this.buffer = buffer;
+	}
+
+	public void consumir() {
+		while (true) {
+			buffer.decrementar();
+			mostrarSituacaoAtual();
+		}
+	}
+
+	private void mostrarSituacaoAtual() {
+		System.out.println("O consumidor consumiu 1 item.");
+	}
+
+	@Override
+	public void run() {
+		consumir();
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Consumidor [buffer=");
+		builder.append(buffer);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

@@ -1,0 +1,7 @@
+#arquivo config
+#Mon Feb 25 21:07:38 BRT 2019
+nome=config
+#arquivo config
+#Mon Feb 25 21:07:38 BRT 2019
+nome=config
+version=1

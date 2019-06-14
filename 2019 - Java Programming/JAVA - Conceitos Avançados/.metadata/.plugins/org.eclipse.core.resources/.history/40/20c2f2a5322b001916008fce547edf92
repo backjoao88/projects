@@ -1,0 +1,12 @@
+package jpb.exercicio3;
+
+public class Consumidor {
+
+	private Buffer buffer = null;
+
+	public Consumidor(Buffer buffer) {
+		super();
+		this.buffer = buffer;
+	}
+
+}

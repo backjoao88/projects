@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;exercicio1.ThreadAumentar&apos; to &apos;IncreaseThread&apos;&#x0D;&#x0A;- Original project: &apos;ExercicioKaelThread-1&apos;&#x0D;&#x0A;- Original element: &apos;exercicio1.ThreadAumentar&apos;&#x0D;&#x0A;- Renamed element: &apos;exercicio1.IncreaseThread&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ThreadAumentar&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;exercicio1{ThreadAumentar.java[ThreadAumentar" matchStrategy="1" name="IncreaseThread" qualified="false" references="true" similarDeclarations="false" stamp="1551206191065" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,16 @@
+1551136148910	Rename local variable 'fileInputStream'
+1551136277533	Rename local variable 'fileOutput'
+1551136345457	Rename local variable 'fileInput'
+1551137055105	Move compilation unit
+1551138652381	Delete element
+1551138686192	Delete element
+1551139036888	Delete element
+1551139069915	Delete element
+1551139085275	Delete element
+1551139303932	Delete element
+1551139391114	Delete element
+1551139656381	Delete element
+1551227615472	Move compilation unit
+1551227626639	Rename package 'br.com.generator.config'
+1551227632125	Rename package 'br.com.generator.main'
+1551297812585	Delete element
