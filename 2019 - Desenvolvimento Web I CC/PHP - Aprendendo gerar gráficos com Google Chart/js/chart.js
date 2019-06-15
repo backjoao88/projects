@@ -1,14 +1,35 @@
-var request = $.ajax({
-    url: "index.php", 
-    dataType:"json", 
-    async: false}
-);
+$.ajax({
 
-var json_text = request.responseText;
-var graph     = JSON.parse(json_text);
+    type     : "GET",
+    url      : "index.php", 
+    dataType : "json", 
+    async    : false,
+    success  : function(json){
+        graph = json
+        switch (graph.IDENTIFICACAO){
+            case 1:
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawPieChart);
+                break;
+            case 2:
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawBarChart);
+                break;
+            case 3:
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawLineChart);
+                break;
+            default:
+                console.log("Tipo inválido!")
+        }
+    },
+    
+    error   : function(err){
+        console.log(err.message)
+    }
+})
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawPieChart);
+
 
 function drawPieChart() {
 
@@ -22,12 +43,10 @@ function drawPieChart() {
     var options = {
         title: graph.titulo,
         subtitle: graph.legenda,
-        pieHole: 0.4,
-        slices: { 0: {offset: 0.2},
-                  1: {offset: 0.3},
-                  2: {offset: 0.4},
-        },
-        pieStartAngle: 5
+        pieHole: graph.pizzaTamanhoBuraco,
+        pieStartAngle: graph.pizzaAnguloDeInicio,
+        width: graph.largura,
+        height: graph.altura
     };
 
     for (let i = 0; i < graph.valoresX.length; i++){
@@ -41,9 +60,6 @@ function drawPieChart() {
 
 }
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawLineChart);
-
 function drawLineChart() {
 
     var data = new google.visualization.DataTable();
@@ -53,7 +69,10 @@ function drawLineChart() {
 
     var options = {
         title: graph.titulo,
-        subtitle: graph.legenda
+        subtitle: graph.legenda,
+        curveType: graph.tipoCurva,
+        width: graph.largura,
+        height: graph.altura
     };
 
     for (let i = 0; i < graph.valoresX.length; i++){
@@ -67,9 +86,6 @@ function drawLineChart() {
 
 }
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawBarChart);
-
 function drawBarChart() {
 
     var data = new google.visualization.DataTable();
@@ -79,7 +95,10 @@ function drawBarChart() {
 
     var options = {
         title: graph.titulo,
-        subtitle: graph.legenda
+        subtitle: graph.legenda,
+        bar: {groupWidth: graph.larguraBarra},
+        width: graph.largura,
+        height: graph.altura
     };
 
     for (let i = 0; i < graph.valoresX.length; i++){

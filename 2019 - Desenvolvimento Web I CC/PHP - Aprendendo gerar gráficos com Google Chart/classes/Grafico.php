@@ -4,8 +4,10 @@
 
         private $titulo;
         private $legenda;
-        private $desc_coluna;
-        private $desc_linha;
+        private $descricaoColuna;
+        private $descricaoLinha;
+        private $largura;
+        private $altura;
         private $valoresX = [];
         private $valoresY = []; 
 
@@ -18,14 +20,24 @@
             $this->setLegenda($legenda);
             return $this;
         }
+
+        public function comAlturaDe($altura){
+            $this->setAltura($altura);
+            return $this;
+        }
+
+        public function comLarguraDe($largura){
+            $this->setLargura($largura);
+            return $this;
+        }
         
         public function utilizandoADescricaoX($descX){
-            $this->setDesc_linha($descX);
+            $this->setDescricaoLinha($descX);
             return $this;
         }
 
         public function utilizandoADescricaoY($descY){
-            $this->setDesc_coluna($descY);
+            $this->setDescricaoColuna($descY);
             return $this;
         }
 
@@ -54,29 +66,29 @@
         public function setLegenda($legenda){
             $this->legenda = $legenda;
         }
-
-        public function getDesc_coluna(){
-            return $this->desc_coluna;
-        }
-
-        public function setDesc_coluna($desc_coluna){
-            $this->desc_coluna = $desc_coluna;
-        }
-
-        public function getDesc_linha(){
-            return $this->desc_linha;
-        }
-
-        public function setDesc_linha($desc_linha){
-            $this->desc_linha = $desc_linha;
-        }
-
+        
         public function getValoresX(){
             return $this->valoresX;
         }
 
         public function setValoresX($valoresX){
             $this->valoresX = $valoresX;
+        }
+
+        public function getLargura(){
+            return $this->largura;
+        }
+
+        public function setLargura($largura){
+            $this->largura = $largura;
+        }
+
+        public function getAltura(){
+            return $this->altura;
+        }
+
+        public function setAltura($altura){
+            $this->altura = $altura;
         }
  
         public function getValoresY(){
@@ -85,6 +97,22 @@
 
         public function setValoresY($valoresY){
             $this->valoresY = $valoresY;
+        }
+        
+        public function getDescricaoColuna(){
+            return $this->descricaoColuna;
+        }
+
+        public function setDescricaoColuna($descricaoColuna){
+            $this->descricaoColuna = $descricaoColuna;
+        }
+        
+        public function getDescricaoLinha(){
+            return $this->descricaoLinha;
+        }
+ 
+        public function setDescricaoLinha($descricaoLinha){
+            $this->descricaoLinha = $descricaoLinha;
         }
 
         public function jsonSerialize(){
@@ -96,14 +124,15 @@
             return '[Grafico -> titulo= ' 
             . $this->getTitulo(). ', legenda= ' 
             . $this->getLegenda() . ', desc_coluna= ' 
-            . $this->getDesc_coluna() . ', desc_linha= '
-            . $this->getDesc_linha() . ', valoresX= '
+            . $this->getDescricaoColuna() . ', desc_linha= '
+            . $this->getAltura() . ', altura= ' 
+            . $this->getLargura() . ', largura= '
+            . $this->getDescricaoLinha() . ', valoresX= '
             . json_encode($this->getValoresX()) . ', valoresY= '
             . json_encode($this->getValoresY()) . ']'; 
            
   
         }
-
     }
 
 ?>
