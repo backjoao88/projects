@@ -5,20 +5,21 @@
     // $marcaDAO = new MarcaDAO();
     // $marcaBO = new MarcaBO($marcaDAO);
 
-    // $marca = (new Marca())->setId(10)->setDescricao('COCA-COLA');
+    // $marca = (new Marca())->setId(1)->setDescricao('AGRALE');
 
-    // $marcaBO->alterar($marca);
+    // $marcaBO->inserir($marca);
 
     // $produtoDAO = new ProdutoDAO();
     // $produtoBO = new ProdutoBO($produtoDAO);
 
-    // $prod = (new Produto())->setId(8)
-    //                        ->setDescricao('MARTELO')
+    // $prod = (new Produto())->setId(1)
+    //                        ->setDescricao('nadasda')
     //                        ->setPreco(50)
-    //                        ->setCodigoBarra(12321321)
+    //                        ->setCodigoBarra(22223)
     //                        ->setMarcaId(13);
 
-    // $produtoBO->alterar($prod);
+    // $produtoBO->inserir($prod);
+
 
     // $clienteDAO = new ClienteDAO();
     // $clienteBO  = new ClienteBO($clienteDAO);
@@ -37,20 +38,10 @@
     //                           ->setCidade("asdsa")
     //                           ->setEstado("asdasd");
 
-    //  $clienteBO->alterar($cliente);
+    //  $clienteBO->inserir($cliente);
+
+
 
     
-    $vendedorDAO = new VendedorDAO();
-    $vendedorBO  = new VendedorBO($vendedorDAO);
-
-    $vendedor = (new Vendedor())->setIdVendedor(2)
-                              ->setNome("mmmm")
-                              ->setUsuario("mmmmm")
-                              ->setSenha("mmm");
-
-    $vendedorBO->alterar($vendedor);
-
-
-
 
 ?>

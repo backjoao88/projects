@@ -19,7 +19,8 @@
 
     $vendedor = $vendedorBO->listarVendedorPorCodigo((new Vendedor)->setIdVendedor(3));
 
-    $itemProduto = (new ItemProduto())->setQuantidadeProduto(20);
+    $itemProduto = (new ItemProduto())->setQuantidadeProduto(20);´
+
     $produto = $produtoBO->listarProdutoPorCodigo((new Produto)->setId(1));
     $itemProduto->setId($produto->getId())
                  ->setDescricao($produto->getDescricao())
@@ -54,6 +55,4 @@
     $vendaBO->inserirItemProduto($vendaIt, $itemProduto);
     $vendaBO->inserirItemProduto($vendaIt, $itemProduto2);
     
-
-
 ?>
