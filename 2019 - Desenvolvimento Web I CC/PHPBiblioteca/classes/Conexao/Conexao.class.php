@@ -6,7 +6,7 @@
 
         private const BANCO_TIPO    = "mysql";
         private const BANCO_HOST    = "localhost";
-        private const BANCO_NOME    = "vendaSimples";
+        private const BANCO_NOME    = "bib";
         private const BANCO_USUARIO = "root";
         private const BANCO_SENHA   = "";
         

@@ -47,7 +47,6 @@
         }
 
 
-
         public function listarBibliotecarios(){
             return $this->ler();
         }

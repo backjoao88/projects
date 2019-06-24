@@ -2,9 +2,11 @@
 
 
     $paths = array(
-        'classes' . DIRECTORY_SEPARATOR . 'DAO' . DIRECTORY_SEPARATOR,
+        'classes' . DIRECTORY_SEPARATOR . 'DAO' . DIRECTORY_SEPARATOR . 'MySQL' . DIRECTORY_SEPARATOR,
+        'classes' . DIRECTORY_SEPARATOR . 'DAO' . DIRECTORY_SEPARATOR . 'JSON' . DIRECTORY_SEPARATOR,
         'classes' . DIRECTORY_SEPARATOR . 'DTO' . DIRECTORY_SEPARATOR,
         'classes' . DIRECTORY_SEPARATOR . 'BO'  . DIRECTORY_SEPARATOR,
+        'classes' . DIRECTORY_SEPARATOR . 'Conexao'  . DIRECTORY_SEPARATOR,
         'interfaces' . DIRECTORY_SEPARATOR ,
         'interfaces' . DIRECTORY_SEPARATOR ,
         'interfaces' . DIRECTORY_SEPARATOR ,
