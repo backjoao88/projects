@@ -1,6 +1,6 @@
 <?php
 
-    class Marca{
+    class Marca implements JsonSerializable{
         
         private $id;
         private $descricao;
@@ -22,6 +22,11 @@
             $this->descricao = $descricao;
             return $this;
         }
+
+        public function jsonSerialize(){
+            return get_object_vars($this);
+        }
+
         
     }
 

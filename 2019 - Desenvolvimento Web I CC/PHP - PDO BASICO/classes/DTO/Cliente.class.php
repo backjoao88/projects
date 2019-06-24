@@ -1,7 +1,7 @@
 <?php
 
 
-    class Cliente{
+    class Cliente implements JsonSerializable{
         
         private $idCliente;
         private $nome;
@@ -277,6 +277,11 @@
 
                 return $this;
         }
+
+        public function jsonSerialize(){
+                return get_object_vars($this);
+        }
+
     }
 
 

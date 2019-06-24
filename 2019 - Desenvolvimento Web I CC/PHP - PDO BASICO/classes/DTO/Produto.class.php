@@ -1,6 +1,6 @@
 <?php
 
-    class Produto{
+    class Produto implements JsonSerializable{
         
         private $id;
         private $descricao;
@@ -8,49 +8,111 @@
         private $codigoBarra;
         private $marcaId;
 
-        public function getId(){
-            return $this->id;
+        /**
+         * Get the value of id
+         */ 
+        public function getId()
+        {
+                return $this->id;
         }
 
-        public function setId($id){
-            $this->id = $id;
-            return $this;
+        /**
+         * Set the value of id
+         *
+         * @return  self
+         */ 
+        public function setId($id)
+        {
+                $this->id = $id;
+
+                return $this;
         }
 
-        public function getDescricao(){
-            return $this->descricao;
+        /**
+         * Get the value of descricao
+         */ 
+        public function getDescricao()
+        {
+                return $this->descricao;
         }
 
-        public function setDescricao($descricao){
-            $this->descricao = $descricao;
-            return $this;
+        /**
+         * Set the value of descricao
+         *
+         * @return  self
+         */ 
+        public function setDescricao($descricao)
+        {
+                $this->descricao = $descricao;
+
+                return $this;
         }
 
-        public function getPreco(){
-            return $this->preco;
+        /**
+         * Get the value of preco
+         */ 
+        public function getPreco()
+        {
+                return $this->preco;
         }
 
-        public function setPreco($preco){
-            $this->preco = $preco;
-            return $this;
+        /**
+         * Set the value of preco
+         *
+         * @return  self
+         */ 
+        public function setPreco($preco)
+        {
+                $this->preco = $preco;
+
+                return $this;
         }
 
-        public function getCodigoBarra(){
-            return $this->codigoBarra;
+        /**
+         * Get the value of codigoBarra
+         */ 
+        public function getCodigoBarra()
+        {
+                return $this->codigoBarra;
         }
 
-        public function setCodigoBarra($codigoBarra){
-            $this->codigoBarra = $codigoBarra;
-            return $this;
+        /**
+         * Set the value of codigoBarra
+         *
+         * @return  self
+         */ 
+        public function setCodigoBarra($codigoBarra)
+        {
+                $this->codigoBarra = $codigoBarra;
+
+                return $this;
         }
 
-        public function getMarcaId(){
-            return $this->marcaId;
+        /**
+         * Get the value of marcaId
+         */ 
+        public function getMarcaId()
+        {
+                return $this->marcaId;
         }
 
-        public function setMarcaId($marcaId){
-            $this->marcaId = $marcaId;
+        /**
+         * Set the value of marcaId
+         *
+         * @return  self
+         */ 
+        public function setMarcaId($marcaId)
+        {
+                $this->marcaId = $marcaId;
+
+                return $this;
         }
+
+        public function jsonSerialize(){
+                return get_object_vars($this);
+        }
+
+
     }
 
 

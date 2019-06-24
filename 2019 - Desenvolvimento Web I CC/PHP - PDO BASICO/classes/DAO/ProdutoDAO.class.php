@@ -97,7 +97,7 @@
         public function listarProdutoPorCodigo(Produto $produto){
             try{
                 $pdo = Conexao::conectar();
-                $sql = 'SELECT * FROM ' . self::NOME_TABELA . ' WHERE codigo = :codigo';
+                $sql = 'SELECT * FROM ' . self::NOME_TABELA . ' WHERE idproduto = :codigo';
 
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':codigo', $codigo);
@@ -105,7 +105,20 @@
 
                 $stmt->execute();
                 $produtos = $stmt->fetchAll();
-                return $produtos;
+
+                $lista_produtos = [];
+
+                foreach($produtos as $k => $prod){
+                    $prod = (new Produto())->setId($prod['idproduto'])
+                                          ->setDescricao($prod['descricao'])
+                                          ->setPreco($prod['valor'])
+                                          ->setCodigoBarra($prod['codigodebarra'])
+                                          ->setMarcaId($prod['marca_idmarca']);
+
+                    $lista_produtos[] = $prod;
+                } 
+                
+                return $lista_produtos[0];
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
             }finally{
@@ -118,8 +131,19 @@
                 $pdo = Conexao::conectar();
                 $sql = 'SELECT * FROM produto;';
                 $query = $pdo->query($sql);
-                $produtos = $query->fetchAll();
-                return $produtos;
+                $produtos = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                $lista_venda = [];
+
+                foreach($produtos as $k => $vend){
+                    $vend = (new Produto())->setId($vend['idproduto'])
+                                            ->setDescricao($vend['descricao'])
+                                            ->setPreco($vend['valor'])
+                                            ->setCodigoBarra($vend['codigodebarra'])
+                                            ->setMarcaId($vend['marca_idmarca']);
+                    $lista_venda[] = $vend;
+                } 
+                return $lista_venda;
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
             }finally{

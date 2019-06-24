@@ -1,7 +1,7 @@
 <?php
 
 
-    class Vendedor{
+    class Vendedor implements JsonSerializable{
 
         private $idVendedor;
         private $nome;
@@ -87,6 +87,11 @@
 
                 return $this;
         }
+
+        public function jsonSerialize(){
+                return get_object_vars($this);
+        }
+
     }
 
 

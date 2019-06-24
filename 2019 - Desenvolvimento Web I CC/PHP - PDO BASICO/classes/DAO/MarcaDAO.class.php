@@ -99,8 +99,16 @@
                 $pdo = Conexao::conectar();
                 $sql = 'SELECT * FROM marca;';
                 $query = $pdo->query($sql);
-                $marcas = $query->fetchAll();
-                return $marcas;
+                $marcas = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                $lista_marcas = [];
+
+                foreach($marcas as $k => $mar){
+                    $marca = (new Marca())->setId($mar['idmarca'])
+                                            ->setDescricao($mar['descricao']);
+                    $lista_marcas[] = $marca;
+                } 
+                return $lista_marcas;
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
             }finally{

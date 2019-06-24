@@ -1,6 +1,6 @@
 <?php
 
-    class Venda{
+    class Venda implements JsonSerializable{
 
         private $idVenda;
         private $data;
@@ -150,6 +150,11 @@
 
                 return $this;
         }
+
+        public function jsonSerialize(){
+                return get_object_vars($this);
+        }
+
     }
 
 

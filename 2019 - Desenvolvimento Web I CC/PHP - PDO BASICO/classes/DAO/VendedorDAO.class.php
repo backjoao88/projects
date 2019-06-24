@@ -40,10 +40,10 @@
                 $stmt->bindParam(':senha', $senha,  PDO::PARAM_INT);
                 $stmt->bindParam(':codigo', $codigo,  PDO::PARAM_INT);
 
-                $nome         = $vendedor->getNome();
-                $usuario      = $vendedor->getUsuario();
-                $senha        = $vendedor->getSenha();
-                $codigo        = $vendedor->getIdVendedor();
+                $nome           = $vendedor->getNome();
+                $usuario        = $vendedor->getUsuario();
+                $senha          = $vendedor->getSenha();
+                $codigo         = $vendedor->getIdVendedor();
 
                 $stmt->execute();
             }catch (PDOException $e){
@@ -72,11 +72,22 @@
 
         public function listarVendedores(){   
             try{
-                $pdo = Conexao::conectar();
-                $sql = 'SELECT * FROM vendedor;';
-                $query = $pdo->query($sql);
-                $vendedores = $query->fetchAll();
-                return $vendedores;
+                $pdo                = Conexao::conectar();
+                $sql                = 'SELECT * FROM vendedor;';
+                $query              = $pdo->query($sql);
+                $vendedores         = $query->fetchAll(PDO::FETCH_ASSOC);
+                $lista_vendedor = [];
+
+                foreach($vendedores as $k => $vend){
+                    $vend = (new Vendedor())->setIdVendedor($vend['idvendedor'])
+                                            ->setNome($vend['nome'])
+                                            ->setUsuario($vend['usuario'])
+                                            ->setSenha($vend['senha']);
+
+                    $lista_vendedor[] = $vend;
+                } 
+                print_r($lista_vendedor);
+                return $lista_vendedor;
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
             }finally{
@@ -94,8 +105,20 @@
                 $codigo = $vendedor->getIdVendedor();
 
                 $stmt->execute();
-                $vendedor = $stmt->fetchAll();
-                return $vendedor;
+                $vendedores = $stmt->fetchAll();
+
+                $lista_vendedor = [];
+
+                foreach($vendedores as $k => $vend){
+                    $vend = (new Vendedor())->setIdVendedor($vend['idvendedor'])
+                                            ->setNome($vend['nome'])
+                                            ->setUsuario($vend['usuario'])
+                                            ->setSenha($vend['senha']);
+
+                    $lista_vendedor[] = $vend;
+                } 
+
+                return $lista_vendedor[0];
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
             }finally{

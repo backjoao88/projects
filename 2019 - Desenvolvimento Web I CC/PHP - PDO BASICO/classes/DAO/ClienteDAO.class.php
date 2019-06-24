@@ -111,8 +111,28 @@
                 $pdo = Conexao::conectar();
                 $sql = 'SELECT * FROM cliente;';
                 $query = $pdo->query($sql);
-                $clientes = $query->fetchAll();
-                return $clientes;
+                $clientes = $query->fetchAll(PDO::FETCH_ASSOC);
+                
+                $lista_clientes = [];
+
+                foreach($clientes as $k => $cliente){
+                    $cli = (new Cliente())->setIdCliente($cliente['idcliente'])
+                                          ->setNome($cliente['nome'])
+                                          ->setCpf($cliente['cpf'])
+                                          ->setRg($cliente['rg'])
+                                          ->setFone($cliente['fone'])
+                                          ->setEmail($cliente['email']) 
+                                          ->setUsuario($cliente['usuario'])
+                                          ->setSenha($cliente['senha'])
+                                          ->setEndereco($cliente['endereco'])
+                                          ->setNumero($cliente['numero'])
+                                          ->setBairro($cliente['bairro'])
+                                          ->setCidade($cliente['cidade'])
+                                          ->setEstado($cliente['estado']);
+
+                    $lista_clientes[] = $cli;
+                } 
+                return $lista_clientes;
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
             }finally{
@@ -130,8 +150,29 @@
                 $codigo = $cliente->getIdCliente();
 
                 $stmt->execute();
-                $cliente = $stmt->fetchAll();
-                return $cliente;
+                $clientes = $stmt->fetchAll();
+
+                $lista_clientes = [];
+
+                foreach($clientes as $k => $cliente){
+                    $cli = (new Cliente())->setIdCliente($cliente['idcliente'])
+                                          ->setNome($cliente['nome'])
+                                          ->setCpf($cliente['cpf'])
+                                          ->setRg($cliente['rg'])
+                                          ->setFone($cliente['fone'])
+                                          ->setEmail($cliente['email']) 
+                                          ->setUsuario($cliente['usuario'])
+                                          ->setSenha($cliente['senha'])
+                                          ->setEndereco($cliente['endereco'])
+                                          ->setNumero($cliente['numero'])
+                                          ->setBairro($cliente['bairro'])
+                                          ->setCidade($cliente['cidade'])
+                                          ->setEstado($cliente['estado']);
+
+                    $lista_clientes[] = $cli;
+                } 
+                
+                return $lista_clientes[0];
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
             }finally{
