@@ -17,12 +17,12 @@
         $data      = isset($_POST['data-publicacao']) ?$_POST['data-publicacao'] : '';
         $autor     = isset($_POST['autor']) ?$_POST['autor'] : '';
 
-        $livro = (new Livro())->utilizandoOID(intval($id))
-                                        ->comONome($nome)
-                                        ->cadastradoComOISBN($isbn)
-                                        ->naEdicao($edicao)
-                                        ->publicadoEm($data)
-                                        ->criadoPeloAutor($autor);
+        $livro = (new Livro())->setLivroId(intval($id))
+                                        ->setLivroNome($nome)
+                                        ->setLivroIsbn($isbn)
+                                        ->setLivroEdicao($edicao)
+                                        ->setLivroDataPublicacao($data)
+                                        ->setLivroAutor($autor);
         $livroBO->inserir($livro);
 
     }
@@ -30,7 +30,7 @@
 
     if(isset($_POST['deletar-livro'])){
         $linha_selecionada = $_GET['id'];
-        $liv = (new Livro())->utilizandoOID(intval($linha_selecionada));
+        $liv = (new Livro())->setLivroId(intval($linha_selecionada));
         $livroBO->excluir($liv);
     }
 
@@ -46,12 +46,12 @@
 
 
 
-        $livro = (new Livro())->utilizandoOID(intval($id))
-                                ->comONome($nome)
-                                ->cadastradoComOISBN($isbn)
-                                ->naEdicao($edicao)
-                                ->publicadoEm($data)
-                                ->criadoPeloAutor($autor);
+        $livro = (new Livro())->setLivroId(intval($id))
+                                ->setLivroNome($nome)
+                                ->setLivroIsbn($isbn)
+                                ->setLivroEdicao($edicao)
+                                ->setLivroDataPublicacao($data)
+                                ->setLivroAutor($autor);
         
         echo $livroBO->alterar($livro);
 

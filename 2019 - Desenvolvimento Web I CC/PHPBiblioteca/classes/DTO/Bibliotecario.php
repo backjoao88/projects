@@ -8,70 +8,107 @@
         private $bibliotecario_login;
         private $bibliotecario_senha;
 
-        public function utilizandoOID($bibliotecario_id){
-            $this->setBibliotecarioId($bibliotecario_id);
-            return $this;
+
+        /**
+         * Get the value of bibliotecario_id
+         */ 
+        public function getBibliotecarioId()
+        {
+                return $this->bibliotecario_id;
         }
 
-        public function comONome($bibliotecario_nome){
-            $this->setBibliotecarioNome($bibliotecario_nome);
-            return $this;
+        /**
+         * Set the value of bibliotecario_id
+         *
+         * @return  self
+         */ 
+        public function setBibliotecarioId($bibliotecario_id)
+        {
+                $this->bibliotecario_id = $bibliotecario_id;
+
+                return $this;
         }
 
-        public function utilizandoOCpf($bibliotecario_cpf){
-            $this->setBibliotecarioCpf($bibliotecario_cpf);
-            return $this;
+        /**
+         * Get the value of bibliotecario_nome
+         */ 
+        public function setBibliotecarioNome()
+        {
+                return $this->bibliotecario_nome;
         }
 
-        public function casdastradoComOLogin($bibliotecario_login){
-            $this->setLogin($bibliotecario_login);
-            return $this;
+        /**
+         * Set the value of bibliotecario_nome
+         *
+         * @return  self
+         */ 
+        public function setBibliotecarioNome($bibliotecario_nome)
+        {
+                $this->bibliotecario_nome = $bibliotecario_nome;
+
+                return $this;
         }
 
-        public function casdastradoComASenha($bibliotecario_senha){
-            $this->setSenha($bibliotecario_senha);
-            return $this;
-        }
-
-        public function getBibliotecarioId(){
-            return $this->bibliotecario_id;
-        }
-
-        public function setBibliotecarioId($bibliotecario_id){
-            $this->bibliotecario_id = $bibliotecario_id;
-        }
-
-        public function getBibliotecarioNome(){
-            return $this->bibliotecario_nome;
-        }
-
-        public function setBibliotecarioNome($bibliotecario_nome){
-            $this->bibliotecario_nome = $bibliotecario_nome;
-        }
-
-        public function getBibliotecarioCpf(){
+        /**
+         * Get the value of bibliotecario_cpf
+         */ 
+        public function getBibliotecarioCpf()
+        {
                 return $this->bibliotecario_cpf;
         }
 
-        public function setBibliotecarioCpf($bibliotecario_cpf){
+        /**
+         * Set the value of bibliotecario_cpf
+         *
+         * @return  self
+         */ 
+        public function setBibliotecarioCpf($bibliotecario_cpf)
+        {
                 $this->bibliotecario_cpf = $bibliotecario_cpf;
+
+                return $this;
         }
 
-        public function getBibliotecarioLogin(){
-            return $this->bibliotecario_login;
+        /**
+         * Get the value of bibliotecario_login
+         */ 
+        public function getBibliotecarioLogin()
+        {
+                return $this->bibliotecario_login;
         }
 
-        public function setBibliotecarioLogin($bibliotecario_login){
-            $this->bibliotecario_login = $bibliotecario_login;
+        /**
+         * Set the value of bibliotecario_login
+         *
+         * @return  self
+         */ 
+        public function setBibliotecarioLogin($bibliotecario_login)
+        {
+                $this->bibliotecario_login = $bibliotecario_login;
+
+                return $this;
         }
 
-        public function getBibliotecarioSenha(){
-            return $this->bibliotecario_senha;
+        /**
+         * Get the value of bibliotecario_senha
+         */ 
+        public function getBibliotecarioSenha()
+        {
+                return $this->bibliotecario_senha;
         }
 
-        public function setBibliotecarioSenha($bibliotecario_senha){
-            $this->bibliotecario_senha = $bibliotecario_senha;
+        /**
+         * Set the value of bibliotecario_senha
+         *
+         * @return  self
+         */ 
+        public function setBibliotecarioSenha($bibliotecario_senha)
+        {
+                $this->bibliotecario_senha = $bibliotecario_senha;
+
+                return $this;
         }
+
         
         public function jsonSerialize(){
             return get_object_vars($this);

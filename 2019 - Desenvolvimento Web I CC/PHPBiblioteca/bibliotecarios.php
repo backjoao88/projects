@@ -16,16 +16,16 @@
         $nome_bibliotecario   = isset($_POST['bibliotecario-nome']) ? $_POST['bibliotecario-nome'] : '';
         $cpf_bibliotecario    = isset($_POST['bibliotecario-cpf']) ? $_POST['bibliotecario-cpf'] : '';
 
-        $bib = (new Bibliotecario())->utilizandoOID(intval($id))
-                            ->comONome($nome_bibliotecario)
-                            ->utilizandoOCpf($cpf_bibliotecario);
+        $bib = (new Bibliotecario())->setBibliotecarioId(intval($id))
+                            ->setBibliotecarioNome($nome_bibliotecario)
+                            ->setBibliotecarioCpf($cpf_bibliotecario);
 
         $bibliotecarioBO->inserir($bib);
     }
 
     if(isset($_POST['deletar-bibliotecario'])){
         $linha_selecionada = $_GET['id'];
-        $bib = (new Bibliotecario())->utilizandoOID(intval($linha_selecionada));
+        $bib = (new Bibliotecario())->setBibliotecarioId(intval($linha_selecionada));
         $bibliotecarioBO->excluir($bib);
 
     }
@@ -36,9 +36,9 @@
         $nome_bibliotecario   = isset($_POST['edit-nome']) ? $_POST['edit-nome'] : '';
         $cpf_bibliotecario    = isset($_POST['edit-cpf']) ? $_POST['edit-cpf'] : '';
 
-        $bib = (new Bibliotecario())->utilizandoOID(intval($id))
-                            ->comONome($nome_bibliotecario)
-                            ->utilizandoOCpf($cpf_bibliotecario);
+        $bib = (new Bibliotecario())->setBibliotecarioId(intval($id))
+                            ->setBibliotecarioNome($nome_bibliotecario)
+                            ->setBibliotecarioCpf($cpf_bibliotecario);
 
         echo $bibliotecarioBO->alterar($bib);
     }

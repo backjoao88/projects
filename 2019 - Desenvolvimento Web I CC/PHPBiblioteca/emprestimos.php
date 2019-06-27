@@ -21,21 +21,21 @@
         $bibliotecarioId          = isset($_POST['bibliotecarios']) ? $_POST['bibliotecarios'] : '';
         $livros             = isset($_POST['livros']) ? $_POST['livros'] : '';
 
-        $bibliotecarioProcurar = (new Bibliotecario())->utilizandoOID(intval($bibliotecarioId));
+        $bibliotecarioProcurar = (new Bibliotecario())->setBibliotecarioId(intval($bibliotecarioId));
 
         $bibliotecario = $bibliotecarioBO->procurarBibliotecarioPorId($bibliotecarioProcurar);
 
         foreach($livros as $livroId){
-            $livroProcurar = (new Livro())->utilizandoOID(intval($livroId));
+            $livroProcurar = (new Livro())->setLivroId(intval($livroId));
             $livro = $livroBO->procurarLivroPorId($livroProcurar);
             $lista_livros[] = $livro;
         }
 
-        $emp = (new Emprestimo())->utilizandoOID(intval($id))
-                                ->naADataDeEntrega($data_entrega)
-                                ->naDataDeDevolucao($data_devolucao)
-                                ->cadastradoComOBibliotecario($bibliotecario)
-                                ->comAListaDeLivros($lista_livros);
+        $emp = (new Emprestimo())->setEmprestimoId(intval($id))
+                                ->setEmprestimoDataEntrega($data_entrega)
+                                ->setEmprestimoDataDevolucao($data_devolucao)
+                                ->setEmprestimoBibliotecarioId($bibliotecario)
+                                ->setEmprestimoLivros($lista_livros);
 
         $emprestimoBO->inserir($emp);
 
@@ -55,21 +55,21 @@
         $bibliotecario      = isset($_POST['edit-bibliotecarios']) ? $_POST['edit-bibliotecarios'] : '';
         $livros             = isset($_POST['edit-livros']) ? $_POST['edit-livros'] : '';
 
-        $bibliotecarioProcurar = (new Bibliotecario())->utilizandoOID(intval($bibliotecario));
+        $bibliotecarioProcurar = (new Bibliotecario())->setBibliotecarioId(intval($bibliotecario));
 
         $bibliotecarioObj = $bibliotecarioBO->procurarBibliotecarioPorId($bibliotecarioProcurar);
 
         foreach($livros as $livroId){
-            $livroProcurar = (new Livro())->utilizandoOID(intval($livroId));
+            $livroProcurar = (new Livro())->setLivroId(intval($livroId));
             $livro = $livroBO->procurarLivroPorId($livroProcurar);
             $lista_livros[] = $livro;
         }
 
-        $emp = (new Emprestimo())->utilizandoOID(intval($id))
-                                ->naADataDeEntrega($data_entrega)
-                                ->naDataDeDevolucao($data_devolucao)
-                                ->cadastradoComOBibliotecario($bibliotecarioObj)
-                                ->comAListaDeLivros($lista_livros);
+        $emp = (new Emprestimo())->setEmprestimoId(intval($id))
+                                ->setEmprestimoDataEntrega($data_entrega)
+                                ->setEmprestimoDataDevolucao($data_devolucao)
+                                ->setEmprestimoBibliotecarioId($bibliotecarioObj)
+                                ->setEmprestimoLivros($lista_livros);
 
         $emprestimoBO->alterar($emp);
 
@@ -143,7 +143,7 @@
                                     $lista_bibliotecario = $bibliotecarioBO->listarBibliotecarios();
 
                                         foreach($lista_bibliotecario as $bibliotecario){
-                                            echo '<option value=' . $bibliotecario->getBibliotecarioID() .   '>' . $bibliotecario->getBibliotecarioNome() . '</option>';
+                                            echo '<option value=' . $bibliotecario->getBibliotecarioId() .   '>' . $bibliotecario->getBibliotecarioNome() . '</option>';
                                         }
 
                                     ?>
@@ -159,7 +159,7 @@
                                     $lista_livros = $livroBO->listarLivros();
 
                                         foreach($lista_livros as $livro){
-                                            echo '<option value=' . $livro->getLivroID() .   '>' . $livro->getLivroNome() . '</option>';
+                                            echo '<option value=' . $livro->getLivroId() .   '>' . $livro->getLivroNome() . '</option>';
                                         }
                                     
                                     ?>
@@ -217,7 +217,7 @@
                                     $lista_livros = $livroBO->listarLivros();
 
                                         foreach($lista_livros as $livro){
-                                            echo '<option value=' . $livro->getLivroID() .   '>' . $livro->getLivroNome() . '</option>';
+                                            echo '<option value=' . $livro->getLivroId() .   '>' . $livro->getLivroNome() . '</option>';
                                         }
                                     
                                     ?>
