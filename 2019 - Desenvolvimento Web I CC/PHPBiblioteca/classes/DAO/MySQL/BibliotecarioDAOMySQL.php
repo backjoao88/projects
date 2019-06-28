@@ -4,13 +4,10 @@
 
     class BibliotecarioDAOMySQL implements IPersistenciaBibliotecario{
 
-
-        private const NOME_TABELA = 'bibliotecario';
-
         public function inserir(Bibliotecario $bibliotecario){
             try{
                 $pdo = Conexao::conectar();
-                $sql = 'INSERT INTO ' . self::NOME_TABELA . ' (bibliotecario_nome, bibliotecario_cpf, bibliotecario_login, bibliotecario_senha) VALUES(:bibliotecario_nome,:bibliotecario_cpf,:bibliotecario_login,:bibliotecario_senha)';
+                $sql = 'INSERT INTO ' . self::NOME_TABELA_BIBLIOTECARIO . ' (bibliotecario_nome, bibliotecario_cpf, bibliotecario_login, bibliotecario_senha) VALUES(:bibliotecario_nome,:bibliotecario_cpf,:bibliotecario_login,:bibliotecario_senha)';
                 $stmt = $pdo->prepare($sql);
 
                 $stmt->bindParam(':bibliotecario_nome', $bibliotecario_nome, PDO::PARAM_STR);

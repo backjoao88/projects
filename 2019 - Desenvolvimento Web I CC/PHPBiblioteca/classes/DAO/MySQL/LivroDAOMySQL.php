@@ -4,8 +4,6 @@
 
     class LivroDAOMySQL implements IPersistenciaLivro{
 
-        private const NOME_TABELA = 'livro';
-
         public function inserir(Livro $livro){
             try{
                 $pdo = Conexao::conectar();
@@ -120,7 +118,7 @@
                 $livros   = $query->fetchAll(PDO::FETCH_ASSOC);
 
                 $lista_bibs = [];
-                
+
                 foreach($livros as $k => $liv){
                     $livro = (new Livro())->setLivroId($liv['livro_id'])
                                                           ->setLivroIsbn($liv['livro_isbn'])
