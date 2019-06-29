@@ -214,9 +214,6 @@
 
     $lista_livros = [];
 
-    $livroDAO = new LivroDAOMySQL();
-    $livroBO = new LivroBO($livroDAO);
-
     $lista_livros = $livroBO->listarLivros();
 
     foreach($lista_livros as $livro){

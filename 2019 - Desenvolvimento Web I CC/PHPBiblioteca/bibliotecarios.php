@@ -7,7 +7,7 @@
     include('header.php');
 
     
-    $bibliotecarioDAO = new BibliotecarioDAO();
+    $bibliotecarioDAO = new BibliotecarioDAOMySQL();
     $bibliotecarioBO = new BibliotecarioBO($bibliotecarioDAO);
 
     if(isset($_POST['adicionar-bibliotecario'])){
@@ -188,8 +188,9 @@
 
     foreach($lista_bibliotecarios as $bibliotecario){
         $bibliotecarioJson = json_encode($bibliotecario);
+
         echo "<script>inserirLinhaTabelaBibliotecario('tabela-bibliotecario', $bibliotecarioJson)</script>";
-    }  
+    }   
     
     
 ?>

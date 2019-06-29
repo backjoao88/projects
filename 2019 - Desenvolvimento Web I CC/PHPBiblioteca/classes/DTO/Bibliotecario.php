@@ -32,7 +32,7 @@
         /**
          * Get the value of bibliotecario_nome
          */ 
-        public function setBibliotecarioNome()
+        public function getBibliotecarioNome()
         {
                 return $this->bibliotecario_nome;
         }

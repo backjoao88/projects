@@ -60,11 +60,11 @@
         public function excluir(Bibliotecario $bibliotecario){
             try{
                 $pdo = Conexao::conectar();
-                $sql = 'DELETE FROM ' . self::NOME_TABELA_BIBLIOTECARIO . ' WHERE bibliotecario_id = :id';
+                $sql = 'DELETE FROM ' . self::NOME_TABELA_BIBLIOTECARIO . ' WHERE bibliotecario_id = :bibliotecario_id';
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':bibliotecario_id', $bibliotecario_id);
         
-                $bibliotecario_id          = $bibliotecario->getBibliotecarioId();
+                $bibliotecario_id  = $bibliotecario->getBibliotecarioId();
 
                 $stmt->execute();
             }catch (PDOException $e){
@@ -108,20 +108,23 @@
         public function listarBibliotecarios(){
             try{
                 $pdo        = Conexao::conectar();
-                $sql        = 'SELECT * FROM ' . self::NOME_TABELA_BIBLIOTECARIO;
+                $sql        = 'SELECT * FROM ' . self::NOME_TABELA_BIBLIOTECARIO . ';';
                 $query      = $pdo->query($sql);
                 $bibliotecarios   = $query->fetchAll(PDO::FETCH_ASSOC);
-
+                
                 $lista_bibs = [];
 
                 foreach($bibliotecarios as $k => $bib){
+
                     $bibliotecario = (new Bibliotecario())->setBibliotecarioId($bib['bibliotecario_id'])
                                             ->setBibliotecarioNome($bib['bibliotecario_nome'])
                                             ->setBibliotecarioCpf($bib['bibliotecario_cpf'])
                                             ->setBibliotecarioLogin($bib['bibliotecario_login'])
                                             ->setBibliotecarioSenha($bib['bibliotecario_senha']);
                     $lista_bibs[] = $bibliotecario;
+                   // echo var_dump($bibliotecario);echo '<br>';echo '<br>';
                 } 
+
                 return $lista_bibs;
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
