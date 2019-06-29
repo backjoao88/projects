@@ -22,9 +22,10 @@
                 $emprestimo_bibliotecario_id   = $emprestimo->getEmprestimoBibliotecarioId()->getBibliotecarioId();
 
                 $stmt->execute();
+
                 
                 foreach($emprestimo->getEmprestimoLivros() as $livro){
-                    $this->inserirLivroEmprestimo($emprestimo, $livro);
+                    $this->inserirLivroEmprestimo($this->procurarUltimoEmprestimo(), $livro);
                 }
 
                 $pdo->commit();
