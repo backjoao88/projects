@@ -48,6 +48,7 @@
     }
 
     if(isset($_POST['editar-emprestimo'])){
+        
         $id = intval($_GET['id']);
 
         $data_entrega       = isset($_POST['edit-data-ent']) ? $_POST['edit-data-ent'] : '';
@@ -71,6 +72,7 @@
                                 ->setEmprestimoBibliotecarioId($bibliotecarioObj)
                                 ->setEmprestimoLivros($lista_livros);
 
+        
         $emprestimoBO->alterar($emp);
 
     }

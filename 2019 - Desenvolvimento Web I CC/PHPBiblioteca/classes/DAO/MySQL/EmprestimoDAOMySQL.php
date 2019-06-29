@@ -23,6 +23,10 @@
 
                 $stmt->execute();
 
+                foreach($emprestimo->getEmprestimoLivros() as $livro){
+                    $this->inserirLivroEmprestimo($emprestimo, $livro);
+                }
+
                 $pdo->commit();
 
             }catch (PDOException $e){
@@ -49,9 +53,18 @@
                 $emprestimo_data_entrega       = $emprestimo->getEmprestimoDataEntrega();
                 $emprestimo_data_devolucao     = $emprestimo->getEmprestimoDataDevolucao();
                 $emprestimo_bibliotecario_id   = $emprestimo->getEmprestimoBibliotecarioId()->getBibliotecarioId();
-                $emprestimo_id                  = $emprestimo->getEmprestimoId();
-
+                $emprestimo_id                 = $emprestimo->getEmprestimoId();
+                
                 $stmt->execute();
+
+                foreach($emprestimo->getEmprestimoLivros() as $livro){
+                    $this->excluirLivroEmprestimo($emprestimo, $livro);
+                }
+
+
+                foreach($emprestimo->getEmprestimoLivros() as $livro){
+                    $this->inserirLivroEmprestimo($emprestimo, $livro);
+                }
 
                 $pdo->commit();
 
@@ -71,6 +84,10 @@
                 $stmt->bindParam(':emprestimo_id', $emprestimo_id);
         
                 $emprestimo_id = $emprestimo->getEmprestimoId();
+                
+                foreach($emprestimo->getEmprestimoLivros() as $livro){
+                    $this->excluirLivroEmprestimo($emprestimo, $livro);
+                }
 
                 $stmt->execute();
             }catch (PDOException $e){
@@ -136,56 +153,49 @@
 
             $pdo = Conexao::conectar();
 
-            foreach($emprestimo->getEmprestimoLivros() as $livro){
-                $sql = 'INSERT INTO ' . self::NOME_TABELA_LIVRO_EMPRESTIMO . ' (livro_emprestimo_livro_id, livro_emprestimo_emprestimo_id) VALUES(:livro_emprestimo_livro_id, :livro_emprestimo_emprestimo_id)';
-                $stmt = $pdo->prepare($sql);
+            $sql = 'INSERT INTO ' . self::NOME_TABELA_LIVRO_EMPRESTIMO . ' (livro_emprestimo_livro_id, livro_emprestimo_emprestimo_id) VALUES(:livro_emprestimo_livro_id, :livro_emprestimo_emprestimo_id)';
+            $stmt = $pdo->prepare($sql);
 
-                $stmt->bindParam(':livro_emprestimo_livro_id', $livro_emprestimo_livro_id, PDO::PARAM_STR);
-                $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
+            $stmt->bindParam(':livro_emprestimo_livro_id', $livro_emprestimo_livro_id, PDO::PARAM_STR);
+            $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
 
-                $livro_emprestimo_livro_id          = $emprestimo->getEmprestimoId();
-                $livro_emprestimo_emprestimo_id     = $livro->getLivroId();
+            $livro_emprestimo_livro_id          = $livro->getLivroId();
+            $livro_emprestimo_emprestimo_id     = $emprestimo->getEmprestimoId();
 
-                $stmt->execute();
-
-            }
+            $stmt->execute();
 
         }
         public function alterarLivroEmprestimo(Emprestimo $emprestimo, Livro $livro){
 
             $pdo = Conexao::conectar();
 
-            foreach($emprestimo->getEmprestimoLivros() as $livro){
-                $sql = 'UPDATE ' . self::NOME_TABELA_LIVRO_EMPRESTIMO . ' SET livro_emprestimo_livro_id = :livro_emprestimo_livro_id, livro_emprestimo_emprestimo_id = :livro_emprestimo_emprestimo_id WHERE livro_emprestimo_livro_id = :livro_emprestimo_livro_id AND livro_emprestimo_emprestimo_id = :livro_emprestimo_emprestimo_id;';
-                $stmt = $pdo->prepare($sql);
+            $sql = 'UPDATE ' . self::NOME_TABELA_LIVRO_EMPRESTIMO . ' SET livro_emprestimo_livro_id = :livro_emprestimo_livro_id, livro_emprestimo_emprestimo_id = :livro_emprestimo_emprestimo_id WHERE livro_emprestimo_livro_id = :livro_emprestimo_livro_id AND livro_emprestimo_emprestimo_id = :livro_emprestimo_emprestimo_id;';
+            $stmt = $pdo->prepare($sql);
 
-                $stmt->bindParam(':livro_emprestimo_livro_id', $livro_emprestimo_livro_id, PDO::PARAM_STR);
-                $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
+            $stmt->bindParam(':livro_emprestimo_livro_id', $livro_emprestimo_livro_id, PDO::PARAM_STR);
+            $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
 
-                $livro_emprestimo_livro_id          = $emprestimo->getEmprestimoId();
-                $livro_emprestimo_emprestimo_id     = $livro->getLivroId();
+            $livro_emprestimo_livro_id          = $livro->getLivroId();
+            $livro_emprestimo_emprestimo_id     = $emprestimo->getEmprestimoId();
 
-                $stmt->execute();
-
-            }
+            $stmt->execute();
 
         }
         public function excluirLivroEmprestimo(Emprestimo $emprestimo, Livro $livro){
 
             $pdo = Conexao::conectar();
 
-            foreach($emprestimo->getEmprestimoLivros() as $livro){
-                $sql = 'DELETE FROM ' . self::NOME_TABELA_LIVRO_EMPRESTIMO . ' WHERE livro_emprestimo_livro_id = :livro_emprestimo_livro_id AND livro_emprestimo_emprestimo_id = :livro_emprestimo_emprestimo_id;';
-                $stmt = $pdo->prepare($sql);
+            $sql = 'DELETE FROM ' . self::NOME_TABELA_LIVRO_EMPRESTIMO . ' WHERE livro_emprestimo_livro_id = :livro_emprestimo_livro_id AND livro_emprestimo_emprestimo_id = :livro_emprestimo_emprestimo_id;';
+            $stmt = $pdo->prepare($sql);
 
-                $stmt->bindParam(':livro_emprestimo_livro_id', $livro_emprestimo_livro_id, PDO::PARAM_STR);
-                $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
+            $stmt->bindParam(':livro_emprestimo_livro_id', $livro_emprestimo_livro_id, PDO::PARAM_STR);
+            $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
 
-                $livro_emprestimo_livro_id          = $emprestimo->getEmprestimoId();
-                $livro_emprestimo_emprestimo_id     = $livro->getLivroId();
+            $livro_emprestimo_livro_id          = $livro->getLivroId();
+            $livro_emprestimo_emprestimo_id     = $emprestimo->getEmprestimoId();
 
-                $stmt->execute();
-            }
+            $stmt->execute();
+        
 
         }
 
