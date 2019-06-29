@@ -9,6 +9,8 @@
         public function excluir(Emprestimo $livro);
         public function procurarEmprestimoPorId(Emprestimo $emprestimo);
         public function listarEmprestimos();  
+        public function procurarUltimoEmprestimo();  
+
 
     }
 

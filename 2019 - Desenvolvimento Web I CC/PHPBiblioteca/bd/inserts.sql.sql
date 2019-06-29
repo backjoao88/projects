@@ -6,9 +6,10 @@ INSERT INTO LIVRO(livro_nome, livro_isbn, livro_edicao, livro_data_publicacao, l
 ('Pegasus e a Batalha pelo Olimpo', '5435345', '1', NOW(), 'Kate O\'Hearn');
 
 INSERT INTO BIBLIOTECARIO(bibliotecario_nome, bibliotecario_cpf, bibliotecario_login, bibliotecario_senha) VALUES
-('João da Silva', '123213312321', 'joao', '123'),
 ('Lucas da Silva', '123213312321', 'lucas', '123'),
-('Vitor da Silva', '123213312321', 'vitor', '123');
+('Vitor da Silva', '123213312321', 'vitor', '123'),
+('44 da Silva', '44', '342423', '123');
+
 
 INSERT INTO EMPRESTIMO(emprestimo_data_entrega, emprestimo_data_devolucao, emprestimo_bibliotecario_id) VALUES
 (NOW(), NOW(), 1),

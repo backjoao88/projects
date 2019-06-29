@@ -58,6 +58,9 @@ include('autoload.php');
         public function deletarTodosLivrosDoEmprestimo(Emprestimo $emprestimo){
             $this->pemprestimo->deletarTodosLivrosDoEmprestimo($emprestimo); 
         }
+        public function procurarUltimoEmprestimo(){
+            return $this->pemprestimo->procurarUltimoEmprestimo();  
+        }
 
 
     }

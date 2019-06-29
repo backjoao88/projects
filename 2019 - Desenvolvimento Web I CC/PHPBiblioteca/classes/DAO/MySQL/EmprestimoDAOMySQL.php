@@ -281,6 +281,37 @@
         
         }
 
+        public function procurarUltimoEmprestimo(){
+            try{
+                $pdo        = Conexao::conectar();
+                $sql        = 'select * from '. self::NOME_TABELA_EMPRESTIMO .' order by emprestimo_id desc limit 1;';
+
+                
+                $query      = $pdo->query($sql);
+
+                $emp = $query->fetch(PDO::FETCH_ASSOC);
+
+                $bibliotecarioDAO = new BibliotecarioDAOMySQL();
+                $bibliotecarioBO = new BibliotecarioBO($bibliotecarioDAO);
+            
+                $emprestimo_id    = (new Emprestimo())->setEmprestimoId($emp['emprestimo_id']);
+                $bibliotecario_id = $bibliotecarioBO->procurarBibliotecarioPorId((new Bibliotecario())->setBibliotecarioId($emp['emprestimo_bibliotecario_id']));
+
+                $emprestimo = (new Emprestimo())->setEmprestimoId($emp['emprestimo_id'])
+                                        ->setEmprestimoDataEntrega($emp['emprestimo_data_entrega'])
+                                        ->setEmprestimoDataDevolucao($emp['emprestimo_data_devolucao'])
+                                        ->setEmprestimoBibliotecarioId($bibliotecario_id)
+                                        ->setEmprestimoLivros($this->listarLivrosDoEmprestimo($emprestimo_id));
+
+                return $emprestimo;
+
+            }catch (PDOException $e){
+                echo 'Erro ao Listar -> ' . $e->getMessage();
+            }finally{
+                $pdo = null;
+            }
+        }
+
 
 
 
