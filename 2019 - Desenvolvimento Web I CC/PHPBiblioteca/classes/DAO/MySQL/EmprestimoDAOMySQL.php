@@ -57,14 +57,7 @@
                 
                 $stmt->execute();
 
-                foreach($emprestimo->getEmprestimoLivros() as $livro){
-                    $this->excluirLivroEmprestimo($emprestimo, $livro);
-                }
-
-
-                foreach($emprestimo->getEmprestimoLivros() as $livro){
-                    $this->inserirLivroEmprestimo($emprestimo, $livro);
-                }
+                $this->deletarTodosLivrosDoEmprestimo($emprestimo);
 
                 $pdo->commit();
 
@@ -280,8 +273,8 @@
                 $stmt->bindParam(':livro_emprestimo_livro_id', $livro_emprestimo_livro_id, PDO::PARAM_STR);
                 $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
 
-                $livro_emprestimo_livro_id          = $emprestimo->getEmprestimoId();
-                $livro_emprestimo_emprestimo_id     = $livro->getLivroId();
+                $livro_emprestimo_livro_id          = $livro->getLivroId();
+                $livro_emprestimo_emprestimo_id     = $emprestimo->getEmprestimoId();
 
                 $stmt->execute();
             }
