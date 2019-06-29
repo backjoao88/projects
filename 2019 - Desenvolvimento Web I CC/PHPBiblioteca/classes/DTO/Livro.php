@@ -2,8 +2,6 @@
 
     class Livro implements JsonSerializable{
 
-        public static $contador = 1;
-
         private $livro_id;
         private $livro_nome;
         private $livro_isbn;
@@ -11,88 +9,9 @@
         private $livro_data_publicacao;
         private $livro_autor;
 
-        public function __construct(){
-            Livro::$contador++;
-        }
+        
 
-        public function utilizandoOID($livro_id){
-            $this->setLivroId($livro_id);
-            return $this;
-        }
-
-        public function comONome($livro_nome){
-            $this->setLivroNome($livro_nome);
-            return $this;
-        }
-
-        public function cadastradoComOISBN($livro_isbn){
-            $this->setLivroIsbn($livro_isbn);
-            return $this;
-        }
-
-        public function naEdicao($livro_edicao){
-            $this->setLivroEdicao($livro_edicao);
-            return $this;
-        }
-
-        public function publicadoEm($livro_data_publicacao){
-            $this->setLivroDataPublicacao($livro_data_publicacao);
-            return $this;
-        }
-
-        public function criadoPeloAutor($livro_autor){
-            $this->setLivroAutor($livro_autor);
-            return $this;
-        }
-
-        public function getLivroId(){
-            return $this->livro_id;
-        }
- 
-        public function setLivroId($livro_id){
-            $this->livro_id = $livro_id;
-        }
-
-        public function getLivroNome(){
-            return $this->livro_nome;
-        }
-
-        public function setLivroNome($livro_nome){
-            $this->livro_nome = $livro_nome;
-        }
-
-        public function getLivroIsbn(){
-            return $this->livro_isbn;
-        }
-
-        public function setLivroIsbn($livro_isbn){
-            $this->livro_isbn = $livro_isbn;
-        }
-
-        public function getLivroEdicao(){
-            return $this->livro_edicao;
-        }
-
-        public function setLivroEdicao($livro_edicao){
-            $this->livro_edicao = $livro_edicao;
-        }
-
-        public function getLivroDataPublicacao(){
-            return $this->livro_data_publicacao;
-        }
-
-        public function setLivroDataPublicacao($livro_data_publicacao){
-            $this->livro_data_publicacao = $livro_data_publicacao;
-        }
-
-        public function getLivroAutor(){
-            return $this->livro_autor;
-        }
-
-        public function setLivroAutor($livro_autor){
-            $this->livro_autor = $livro_autor;
-        }
-
+        
         public function jsonSerialize(){
             return get_object_vars($this);
         }
@@ -107,6 +26,126 @@
                     
         }
 
+
+        /**
+         * Get the value of livro_id
+         */ 
+        public function getLivroId()
+        {
+                return $this->livro_id;
+        }
+
+        /**
+         * Set the value of livro_id
+         *
+         * @return  self
+         */ 
+        public function setLivroId($livro_id)
+        {
+                $this->livro_id = $livro_id;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of livro_nome
+         */ 
+        public function getLivroNome()
+        {
+                return $this->livro_nome;
+        }
+
+        /**
+         * Set the value of livro_nome
+         *
+         * @return  self
+         */ 
+        public function setLivroNome($livro_nome)
+        {
+                $this->livro_nome = $livro_nome;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of livro_isbn
+         */ 
+        public function getLivroIsbn()
+        {
+                return $this->livro_isbn;
+        }
+
+        /**
+         * Set the value of livro_isbn
+         *
+         * @return  self
+         */ 
+        public function setLivroIsbn($livro_isbn)
+        {
+                $this->livro_isbn = $livro_isbn;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of livro_edicao
+         */ 
+        public function getLivroEdicao()
+        {
+                return $this->livro_edicao;
+        }
+
+        /**
+         * Set the value of livro_edicao
+         *
+         * @return  self
+         */ 
+        public function setLivroEdicao($livro_edicao)
+        {
+                $this->livro_edicao = $livro_edicao;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of livro_data_publicacao
+         */ 
+        public function getLivroDataPublicacao()
+        {
+                return $this->livro_data_publicacao;
+        }
+
+        /**
+         * Set the value of livro_data_publicacao
+         *
+         * @return  self
+         */ 
+        public function setLivroDataPublicacao($livro_data_publicacao)
+        {
+                $this->livro_data_publicacao = $livro_data_publicacao;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of livro_autor
+         */ 
+        public function getLivroAutor()
+        {
+                return $this->livro_autor;
+        }
+
+        /**
+         * Set the value of livro_autor
+         *
+         * @return  self
+         */ 
+        public function setLivroAutor($livro_autor)
+        {
+                $this->livro_autor = $livro_autor;
+
+                return $this;
+        }
     }
 
 ?>
