@@ -5,7 +5,7 @@
 
     include('autoload.php');
 
-    $livroDAO = new LivroDAO();
+    $livroDAO = new LivroDAOMySQL();
     $livroBO = new LivroBO($livroDAO);
 
     if(isset($_POST['adicionar-livro'])){
@@ -214,7 +214,7 @@
 
     $lista_livros = [];
 
-    $livroDAO = new LivroDAO();
+    $livroDAO = new LivroDAOMySQL();
     $livroBO = new LivroBO($livroDAO);
 
     $lista_livros = $livroBO->listarLivros();

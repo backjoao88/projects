@@ -8,7 +8,7 @@
         public function inserir(Bibliotecario $bibliotecario){
             try{
                 $pdo = Conexao::conectar();
-                $sql = 'INSERT INTO ' . self::NOME_TABELA . ' (bibliotecario_nome, bibliotecario_cpf, bibliotecario_login, bibliotecario_senha) VALUES(:bibliotecario_nome,:bibliotecario_cpf,:bibliotecario_login,:bibliotecario_senha)';
+                $sql = 'INSERT INTO ' . self::NOME_TABELA_BIBLIOTECARIO . ' (bibliotecario_nome, bibliotecario_cpf, bibliotecario_login, bibliotecario_senha) VALUES(:bibliotecario_nome,:bibliotecario_cpf,:bibliotecario_login,:bibliotecario_senha)';
                 $stmt = $pdo->prepare($sql);
 
                 $stmt->bindParam(':bibliotecario_nome', $bibliotecario_nome, PDO::PARAM_STR);
@@ -33,7 +33,7 @@
         public function alterar(Bibliotecario $bibliotecario){
             try{
                 $pdo = Conexao::conectar();
-                $sql = 'UPDATE ' . self::NOME_TABELA . ' SET bibliotecario_nome = :bibliotecario_nome, bibliotecario_cpf = :bibliotecario_cpf, bibliotecario_login = :bibliotecario_login, bibliotecario_senha = :bibliotecario_senha WHERE bibliotecario_id = :bibliotecario_id;';
+                $sql = 'UPDATE ' . self::NOME_TABELA_BIBLIOTECARIO . ' SET bibliotecario_nome = :bibliotecario_nome, bibliotecario_cpf = :bibliotecario_cpf, bibliotecario_login = :bibliotecario_login, bibliotecario_senha = :bibliotecario_senha WHERE bibliotecario_id = :bibliotecario_id;';
                 $stmt = $pdo->prepare($sql);
 
                 $stmt->bindParam(':bibliotecario_nome', $bibliotecario_nome, PDO::PARAM_STR);
@@ -60,7 +60,7 @@
         public function excluir(Bibliotecario $bibliotecario){
             try{
                 $pdo = Conexao::conectar();
-                $sql = 'DELETE FROM ' . self::NOME_TABELA . ' WHERE bibliotecario_id = :id';
+                $sql = 'DELETE FROM ' . self::NOME_TABELA_BIBLIOTECARIO . ' WHERE bibliotecario_id = :id';
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':bibliotecario_id', $bibliotecario_id);
         
@@ -77,7 +77,7 @@
         public function procurarBibliotecarioPorId(Bibliotecario $bibliotecario){
             try{
                 $pdo        = Conexao::conectar();
-                $sql        = 'SELECT * FROM ' . NOME_TABELA . ' WHERE BIBLIOTECARIO_ID = :bibliotecario_id';
+                $sql        = 'SELECT * FROM ' . self::NOME_TABELA_BIBLIOTECARIO . ' WHERE BIBLIOTECARIO_ID = :bibliotecario_id';
                 $query      = $pdo->query($sql);
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':bibliotecario_id', $bibliotecario_id);
@@ -108,7 +108,7 @@
         public function listarBibliotecarios(){
             try{
                 $pdo        = Conexao::conectar();
-                $sql        = 'SELECT * FROM ' . NOME_TABELA;
+                $sql        = 'SELECT * FROM ' . self::NOME_TABELA_BIBLIOTECARIO;
                 $query      = $pdo->query($sql);
                 $bibliotecarios   = $query->fetchAll(PDO::FETCH_ASSOC);
 
