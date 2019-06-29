@@ -104,10 +104,10 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label>ID</label>
                                     <input name="id" type="number" min="1" class="form-control" required>
-                                </div>	
+                                </div>	 -->
                                 <div class="form-group">
                                     <label>Nome</label>
                                     <input name="nome" type="text" class="form-control" required>

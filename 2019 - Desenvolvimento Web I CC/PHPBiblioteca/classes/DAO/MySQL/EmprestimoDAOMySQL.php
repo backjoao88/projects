@@ -22,7 +22,7 @@
                 $emprestimo_bibliotecario_id   = $emprestimo->getEmprestimoBibliotecarioId()->getBibliotecarioId();
 
                 $stmt->execute();
-
+                
                 foreach($emprestimo->getEmprestimoLivros() as $livro){
                     $this->inserirLivroEmprestimo($emprestimo, $livro);
                 }
