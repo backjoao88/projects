@@ -12,13 +12,17 @@
 
     if(isset($_POST['adicionar-bibliotecario'])){
 
-        $id                   = isset($_POST['id']) ? $_POST['id'] : '';
-        $nome_bibliotecario   = isset($_POST['bibliotecario-nome']) ? $_POST['bibliotecario-nome'] : '';
-        $cpf_bibliotecario    = isset($_POST['bibliotecario-cpf']) ? $_POST['bibliotecario-cpf'] : '';
+        $id                     = isset($_POST['id']) ? $_POST['id'] : '';
+        $nome_bibliotecario     = isset($_POST['bibliotecario-nome']) ? $_POST['bibliotecario-nome'] : '';
+        $cpf_bibliotecario      = isset($_POST['bibliotecario-cpf']) ? $_POST['bibliotecario-cpf'] : '';
+        $login_biblitecario     = isset($_POST['bibliotecario-login']) ? $_POST['bibliotecario-login'] : '';
+        $senha_bibliotecario    = isset($_POST['bibliotecario-senha']) ? $_POST['bibliotecario-senha'] : '';
 
         $bib = (new Bibliotecario())->setBibliotecarioId(intval($id))
                             ->setBibliotecarioNome($nome_bibliotecario)
-                            ->setBibliotecarioCpf($cpf_bibliotecario);
+                            ->setBibliotecarioCpf($cpf_bibliotecario)
+                            ->setBibliotecarioLogin($login_biblitecario)
+                            ->setBibliotecarioSenha($senha_bibliotecario);
 
         $bibliotecarioBO->inserir($bib);
     }
@@ -36,7 +40,8 @@
         $nome_bibliotecario   = isset($_POST['edit-nome']) ? $_POST['edit-nome'] : '';
         $cpf_bibliotecario    = isset($_POST['edit-cpf']) ? $_POST['edit-cpf'] : '';
 
-        $bib = (new Bibliotecario())->setBibliotecarioId(intval($id))
+        $bib = $bibliotecarioBO->procurarBibliotecarioPorId((new Bibliotecario())->setBibliotecarioId(intval($id)))
+                            ->setBibliotecarioId(intval($id))
                             ->setBibliotecarioNome($nome_bibliotecario)
                             ->setBibliotecarioCpf($cpf_bibliotecario);
 
@@ -91,10 +96,10 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label>ID</label>
                                     <input name="id" type="number" min="1"  class="form-control" required>
-                                </div>						
+                                </div>						 -->
                                 <div class="form-group">
                                     <label>Nome</label>
                                     <input name="bibliotecario-nome" type="text" class="form-control" required>
@@ -107,7 +112,16 @@
                                         $('#cpf').mask('000.000.000-00', {reverse: true});
 
                                     </script>
-                                </div>					
+                                </div>	
+                                <div class="form-group">
+                                    <label>Login</label>
+                                    <input name="bibliotecario-login" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Senha</label>
+                                    <input name="bibliotecario-senha" type="password" class="form-control" required>
+                                </div>
+                                				
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -140,7 +154,7 @@
                                         $('#edit-cpf').mask('000.000.000-00', {reverse: true});
 
                                     </script>
-                                </div>					
+                                </div>			
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
