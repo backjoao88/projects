@@ -2,6 +2,8 @@
 
     interface IPersistenciaLivro{
 
+        private const NOME_TABELA_LIVRO = "livro";
+
         public function inserir(Livro $livro);
         public function alterar(Livro $livro);
         public function excluir(Livro $livro);

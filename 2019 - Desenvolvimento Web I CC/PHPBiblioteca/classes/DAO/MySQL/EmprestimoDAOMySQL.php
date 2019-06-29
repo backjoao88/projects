@@ -5,9 +5,6 @@
     class EmprestimoDAOMySQL implements IPersistenciaEmprestimo{
 
 
-        private $lista_emprestimos;
-        private const NOME_TABELA = 'emprestimo';
-
         public function inserir(Emprestimo $emprestimo){
 
         }

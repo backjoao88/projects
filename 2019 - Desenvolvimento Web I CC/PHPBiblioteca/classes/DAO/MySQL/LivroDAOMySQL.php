@@ -4,9 +4,6 @@
 
     class LivroDAOMySQL implements IPersistenciaLivro{
 
-
-        private const NOME_TABELA = 'livro';
-
         public function inserir(Livro $livro){
             try{
                 $pdo = Conexao::conectar();
