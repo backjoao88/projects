@@ -24,8 +24,8 @@
         }
 
         public static function iniciarTransacao(){
-            if($pdo != null){
-                $this->conectar();
+            if(self::$pdo != null){
+                self::conectar();
             }
             self::$pdo->beginTransaction();
             return self::$pdo;

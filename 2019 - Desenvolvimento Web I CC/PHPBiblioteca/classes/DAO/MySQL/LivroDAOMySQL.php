@@ -90,8 +90,6 @@
 
                 $livroAss = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-
                 $livro = (new Livro())->setLivroId($livroAss['livro_id'])
                                         ->setLivroNome($livroAss['livro_nome'])
                                         ->setLivroIsbn($livroAss['livro_isbn'])

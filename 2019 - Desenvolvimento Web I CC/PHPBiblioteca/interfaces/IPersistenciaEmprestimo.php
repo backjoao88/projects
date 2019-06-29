@@ -2,7 +2,7 @@
 
     interface IPersistenciaEmprestimo{
 
-        private const NOME_TABELA_EMPRESTIMO = "emprestimo";
+        const NOME_TABELA_EMPRESTIMO = "emprestimo";
 
         public function inserir(Emprestimo $livro);
         public function alterar(Emprestimo $livro);

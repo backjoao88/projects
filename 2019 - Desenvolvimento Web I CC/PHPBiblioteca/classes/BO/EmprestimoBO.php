@@ -35,9 +35,26 @@ include('autoload.php');
             return $this->pemprestimo->listarEmprestimos();   
         }
 
-        public function listarLivrosEmprestimo(){
-            return $this->pemprestimo->listarLivrosEmprestimo();
+        public function inserirLivroEmprestimo(Emprestimo $emprestimo, Livro $livro){
+            $this->pemprestimo->inserirLivroEmprestimo($emprestimo, $livro); 
         }
+
+        public function alterarLivroEmprestimo(Emprestimo $emprestimo, Livro $livro){
+            $this->pemprestimo->alterarLivroEmprestimo($emprestimo, $livro);    
+        }
+
+        public function excluirLivroEmprestimo(Emprestimo $emprestimo, Livro $livro){
+            $this->pemprestimo->excluirLivroEmprestimo($emprestimo, $livro); 
+        }
+
+        public function procurarLivroPorId(Emprestimo $emprestimo, Livro $livro){
+            return $this->pemprestimo->procurarLivroPorId($emprestimo, $livro);  
+        }
+        
+        public function listarLivrosDoEmprestimo(Emprestimo $emprestimo){
+            return $this->pemprestimo->listarLivrosDoEmprestimo($emprestimo); 
+        } 
+
 
     }
 

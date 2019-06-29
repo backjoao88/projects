@@ -4,13 +4,13 @@
     include('autoload.php');
 
     
-    $emprestimosDAO = new EmprestimoDAO();
+    $emprestimosDAO = new EmprestimoDAOMySQL();
     $emprestimoBO = new EmprestimoBO($emprestimosDAO);
 
-    $bibliotecarioDAO = new BibliotecarioDAO();
+    $bibliotecarioDAO = new BibliotecarioDAOMySQL();
     $bibliotecarioBO = new BibliotecarioBO($bibliotecarioDAO);
 
-    $livroDAO = new LivroDAO();
+    $livroDAO = new LivroDAOMySQL();
     $livroBO = new LivroBO($livroDAO);
 
     if(isset($_POST['adicionar-emprestimo'])){
@@ -43,7 +43,7 @@
 
     if(isset($_POST['deletar-emprestimo'])){
         $id = intval($_GET['id']);
-        $emp = (new Emprestimo())->utilizandoOID($id);
+        $emp = (new Emprestimo())->setEmprestimoId($id);
         $emprestimoBO->excluir($emp);
     }
 
@@ -263,11 +263,8 @@
 
     $lista_emps = [];
 
-    $empDAO = new EmprestimoDAO();
-    $empBO  = new EmprestimoBO($empDAO);
-
-    $lista_emps = $empBO->listarEmprestimos();
-
+    $lista_emps = $emprestimoBO->listarEmprestimos();
+    
     foreach($lista_emps as $emp){
         $empJson = json_encode($emp);
         echo "<script>inserirLinhaTabelaEmprestimo('tabela-emprestimos', $empJson)</script>";

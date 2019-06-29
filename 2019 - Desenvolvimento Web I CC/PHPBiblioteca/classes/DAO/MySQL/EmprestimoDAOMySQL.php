@@ -10,7 +10,7 @@
             $pdo = Conexao::iniciarTransacao();
 
             try{
-                $sql = 'INSERT INTO ' . self::NOME_TABELA_EMPRESTIMO . ' (emprestimo_data_entrega, emprestimo_data_devolucao, emprestimo_bibliotecario_id) VALUES(:emprestimo_data_entrega, :emprestimo_data_devolucao, :emprestimo_bibliotecario_id)';
+                $sql = 'INSERT INTO ' . self::NOME_TABELA_EMPRESTIMO . '(emprestimo_data_entrega, emprestimo_data_devolucao, emprestimo_bibliotecario_id) VALUES(:emprestimo_data_entrega, :emprestimo_data_devolucao, :emprestimo_bibliotecario_id)';
                 $stmt = $pdo->prepare($sql);
 
                 $stmt->bindParam(':emprestimo_data_entrega', $emprestimo_data_entrega, PDO::PARAM_STR);
@@ -19,7 +19,7 @@
 
                 $emprestimo_data_entrega       = $emprestimo->getEmprestimoDataEntrega();
                 $emprestimo_data_devolucao     = $emprestimo->getEmprestimoDataDevolucao();
-                $emprestimo_bibliotecario_id   = $emprestimo->getEmprestimoBibliotecarioId();
+                $emprestimo_bibliotecario_id   = $emprestimo->getEmprestimoBibliotecarioId()->getBibliotecarioId();
 
                 $stmt->execute();
 
@@ -44,17 +44,19 @@
                 $stmt->bindParam(':emprestimo_data_entrega', $emprestimo_data_entrega, PDO::PARAM_STR);
                 $stmt->bindParam(':emprestimo_data_devolucao', $emprestimo_data_devolucao, PDO::PARAM_STR);
                 $stmt->bindParam(':emprestimo_bibliotecario_id', $emprestimo_bibliotecario_id, PDO::PARAM_STR);
+                $stmt->bindParam(':emprestimo_id', $emprestimo_id, PDO::PARAM_STR);
 
                 $emprestimo_data_entrega       = $emprestimo->getEmprestimoDataEntrega();
                 $emprestimo_data_devolucao     = $emprestimo->getEmprestimoDataDevolucao();
-                $emprestimo_bibliotecario_id   = $emprestimo->getEmprestimoBibliotecarioId();
+                $emprestimo_bibliotecario_id   = $emprestimo->getEmprestimoBibliotecarioId()->getBibliotecarioId();
+                $emprestimo_id                  = $emprestimo->getEmprestimoId();
 
                 $stmt->execute();
 
                 $pdo->commit();
 
             }catch (PDOException $e){
-                echo 'Erro ao Inserir -> ' . $e->getMessage();
+                echo 'Erro ao Alterar -> ' . $e->getMessage();
                 $pdo->rollback();
             }finally{
                 $pdo = null;
@@ -68,7 +70,7 @@
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':emprestimo_id', $emprestimo_id);
         
-                $emprestimo_id = $emprestimo_id->getEmprestimoId();
+                $emprestimo_id = $emprestimo->getEmprestimoId();
 
                 $stmt->execute();
             }catch (PDOException $e){
@@ -106,16 +108,22 @@
 
                 $lista_emprestimo = [];
 
-                $emprestimoId = (new Emprestimo())->setEmprestimoId($emp['emprestimo_id']);
+                $bibliotecarioDAO = new BibliotecarioDAOMySQL();
+                $bibliotecarioBO = new BibliotecarioBO($bibliotecarioDAO);
 
                 foreach($emprestimos as $k => $emp){
+                    
+                    $emprestimo_id    = (new Emprestimo())->setEmprestimoId($emp['emprestimo_id']);
+                    $bibliotecario_id = $bibliotecarioBO->procurarBibliotecarioPorId((new Bibliotecario())->setBibliotecarioId($emp['emprestimo_bibliotecario_id']));
+
                     $emprestimo = (new Emprestimo())->setEmprestimoId($emp['emprestimo_id'])
                                             ->setEmprestimoDataEntrega($emp['emprestimo_data_entrega'])
                                             ->setEmprestimoDataDevolucao($emp['emprestimo_data_devolucao'])
-                                            ->setEmprestimoBibliotecarioId($emp['emprestimo_bibliotecario_id'])
-                                            ->setEmprestimoLivros($this->listarLivrosDoEmprestimo($emprestimoId));
+                                            ->setEmprestimoBibliotecarioId($bibliotecario_id)
+                                            ->setEmprestimoLivros($this->listarLivrosDoEmprestimo($emprestimo_id));
                     $lista_emprestimo[] = $emprestimo;
                 } 
+                
                 return $lista_emprestimo;
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
@@ -197,6 +205,8 @@
 
                 $stmt->execute();
 
+                $liv = $stmt->fetch(PDO::FETCH_ASSOC);
+
                 $livro = (new Livro())->setLivroId($liv['livro_id'])
                                         ->setLivroNome($liv['livro_nome'])
                                         ->setLivroIsbn($liv['livro_isbn'])
@@ -217,26 +227,31 @@
         public function listarLivrosDoEmprestimo(Emprestimo $emprestimo){
             try{
                 $pdo        = Conexao::conectar();
-                $sql        = 'SELECT * FROM ' . self::NOME_TABELA_EMPRESTIMO . ' WHERE livro_emprestimo_livro_id = :livro_emprestimo_livro_id AND livro_emprestimo_emprestimo_id = :livro_emprestimo_emprestimo_id;';
+                $sql        = 'SELECT l.* from ' . self::NOME_TABELA_LIVRO_EMPRESTIMO . '  LE INNER JOIN LIVRO L ON LE.LIVRO_EMPRESTIMO_LIVRO_ID = L.LIVRO_ID WHERE LE.LIVRO_EMPRESTIMO_EMPRESTIMO_ID = :livro_emprestimo_emprestimo_id;';
 
-                $query      = $pdo->query($sql);
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
 
-                $emprestimos = $query->fetchAll(PDO::FETCH_ASSOC);
+                $livro_emprestimo_emprestimo_id     = $emprestimo->getEmprestimoId();
 
-                $lista_emprestimo = [];
+                $stmt->execute();
 
-                $emprestimoId = (new Emprestimo())->setEmprestimoId($emp['emprestimo_id']);
+                $lista_livros = [];
 
-                foreach($emprestimos as $k => $emp){
-                    $emprestimo = (new Emprestimo())->setEmprestimoId($emp['emprestimo_id'])
-                                            ->setEmprestimoDataEntrega($emp['emprestimo_data_entrega'])
-                                            ->setEmprestimoDataDevolucao($emp['emprestimo_data_devolucao'])
-                                            ->setEmprestimoBibliotecarioId($emp['emprestimo_bibliotecario_id'])
-                                            ->setEmprestimoLivros($this->listarLivrosDoEmprestimo($emprestimoId));
-                    $lista_emprestimo[] = $emprestimo;
+                $livros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($livros as $k => $liv){
+                    $livro = (new Livro())->setLivroId($liv['livro_id'])
+                                        ->setLivroNome($liv['livro_nome'])
+                                        ->setLivroIsbn($liv['livro_isbn'])
+                                        ->setLivroEdicao($liv['livro_edicao'])
+                                        ->setLivroDataPublicacao($liv['livro_data_publicacao'])
+                                        ->setLivroAutor($liv['livro_autor']);
+
+                    $lista_livros[] = $livro;
                 }
                  
-                return $lista_emprestimo;
+                return $lista_livros;
 
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();

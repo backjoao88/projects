@@ -78,26 +78,22 @@
             try{
                 $pdo        = Conexao::conectar();
                 $sql        = 'SELECT * FROM ' . self::NOME_TABELA_BIBLIOTECARIO . ' WHERE BIBLIOTECARIO_ID = :bibliotecario_id';
-                $query      = $pdo->query($sql);
+          
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':bibliotecario_id', $bibliotecario_id);
         
                 $bibliotecario_id          = $bibliotecario->getBibliotecarioId();
                 $stmt->execute();
 
-                $bibliotecarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $bibliotecarioAss = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                $lista_bibs = [];
+                $bibliotecario = (new Bibliotecario())->setBibliotecarioId($bibliotecarioAss['bibliotecario_id'])
+                                        ->setBibliotecarioNome($bibliotecarioAss['bibliotecario_nome'])
+                                        ->setBibliotecarioCpf($bibliotecarioAss['bibliotecario_cpf'])
+                                        ->setBibliotecarioLogin($bibliotecarioAss['bibliotecario_login'])
+                                        ->setBibliotecarioSenha($bibliotecarioAss['bibliotecario_senha']);
 
-                foreach($bibliotecarios as $k => $bib){
-                    $bibliotecario = (new Bibliotecario())->setBibliotecarioId($bib['bibliotecario_id'])
-                                            ->setBibliotecarioNome($bib['bibliotecario_nome'])
-                                            ->setBibliotecarioCpf($bib['bibliotecario_cpf'])
-                                            ->setBibliotecarioLogin($bib['bibliotecario_login'])
-                                            ->setBibliotecarioSenha($bib['bibliotecario_senha']);
-                    $lista_bibs[] = $bibliotecario;
-                } 
-                return $lista_bibs;
+                return $bibliotecario;
             }catch (PDOException $e){
                 echo 'Erro ao Listar -> ' . $e->getMessage();
             }finally{
