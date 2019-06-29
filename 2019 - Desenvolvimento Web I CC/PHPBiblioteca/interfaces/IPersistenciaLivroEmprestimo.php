@@ -9,6 +9,8 @@
         public function excluirLivroEmprestimo(Emprestimo $emprestimo, Livro $livro);
         public function procurarLivroPorId(Emprestimo $emprestimo, Livro $livro);
         public function listarLivrosDoEmprestimo(Emprestimo $emprestimo);  
+        public function deletarTodosLivrosDoEmprestimo(Emprestimo $emprestimo);  
+
 
     }
 

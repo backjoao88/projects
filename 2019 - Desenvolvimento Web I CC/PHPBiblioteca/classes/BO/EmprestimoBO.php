@@ -55,6 +55,10 @@ include('autoload.php');
             return $this->pemprestimo->listarLivrosDoEmprestimo($emprestimo); 
         } 
 
+        public function deletarTodosLivrosDoEmprestimo(Emprestimo $emprestimo){
+            $this->pemprestimo->deletarTodosLivrosDoEmprestimo($emprestimo); 
+        }
+
 
     }
 

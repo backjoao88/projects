@@ -260,6 +260,24 @@
             }
         }
 
+        public function deletarTodosLivrosDoEmprestimo(Emprestimo $emprestimo){
+            $pdo = Conexao::conectar();
+
+            foreach($emprestimo->getEmprestimoLivros() as $livro){
+                $sql = 'DELETE FROM ' . self::NOME_TABELA_LIVRO_EMPRESTIMO . ' WHERE livro_emprestimo_livro_id = :livro_emprestimo_livro_id AND livro_emprestimo_emprestimo_id = :livro_emprestimo_emprestimo_id;';
+                $stmt = $pdo->prepare($sql);
+
+                $stmt->bindParam(':livro_emprestimo_livro_id', $livro_emprestimo_livro_id, PDO::PARAM_STR);
+                $stmt->bindParam(':livro_emprestimo_emprestimo_id', $livro_emprestimo_emprestimo_id, PDO::PARAM_STR);
+
+                $livro_emprestimo_livro_id          = $emprestimo->getEmprestimoId();
+                $livro_emprestimo_emprestimo_id     = $livro->getLivroId();
+
+                $stmt->execute();
+            }
+        }
+
+
 
 
     }
