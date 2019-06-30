@@ -23,7 +23,7 @@
     $stmt->bindParam(':bibliotecario_senha', $bibliotecario_senha, PDO::PARAM_STR);
 
     $bibliotecario_login     = $login;
-    $bibliotecario_senha     = $senha;
+    $bibliotecario_senha     = sha1($senha);
 
     $stmt->execute();
     

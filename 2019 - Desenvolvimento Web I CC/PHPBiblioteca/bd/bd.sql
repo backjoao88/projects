@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `bib`.`emprestimo` (
   CONSTRAINT `fk_emprestimo_bibliotecario1`
     FOREIGN KEY (`emprestimo_bibliotecario_id`)
     REFERENCES `bib`.`bibliotecario` (`bibliotecario_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
