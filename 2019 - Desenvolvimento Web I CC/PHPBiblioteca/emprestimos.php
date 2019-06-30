@@ -139,7 +139,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Bibliotecario</label>
-                                    <select name="bibliotecarios" id="bibliotecarios" required> 
+                                    <select class="custom-select custom-select-sm" name="bibliotecarios" id="bibliotecarios" required> 
                                     <?php
 
                                     $lista_bibliotecario = $bibliotecarioBO->listarBibliotecarios();
@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Livros</label>
-                                    <select name="livros[]"id="livros" multiple required> 
+                                    <select class="custom-select" name="livros[]"id="livros" multiple required> 
                                     <?php
 
                                     $lista_livros = $livroBO->listarLivros();
@@ -198,7 +198,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Bibliotecario</label>
-                                    <select id="edit-bibliotecarios" name="edit-bibliotecarios" required>
+                                    <select class="custom-select custom-select-sm" id="edit-bibliotecarios" name="edit-bibliotecarios" required>
                                     <?php
 
                                     $lista_bibliotecarios = $bibliotecarioBO->listarBibliotecarios();
@@ -213,7 +213,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Livros</label>
-                                    <select name="edit-livros[]" id="edit-livros" multiple required>
+                                    <select class="custom-select" name="edit-livros[]" id="edit-livros" multiple required>
                                     <?php
 
                                     $lista_livros = $livroBO->listarLivros();

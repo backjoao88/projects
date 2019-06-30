@@ -1,3 +1,10 @@
+<?php
+
+	session_start();
+	include('verificalogin.php');
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -251,30 +258,28 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a href="#" class="navbar-brand">Biblioteca JPB</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav">
-			<li class="nav-item active">
-        		<a class="nav-link" href="index.php" aria-haspopup="true" aria-expanded="false">Home</a>
-      		</li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cadastros
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="bibliotecarios.php">Bibliotecarios</a>
-                  <a class="dropdown-item" href="livros.php">Livros</a>
-                  <a class="dropdown-item" href="emprestimos.php">Empréstimos</a>
-                </div>
-            </li>
-            </div>
-
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="home.php"><?php echo 'Olá, '. $_SESSION['usuario'] . '!';  ?></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarText">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Cadastros
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="bibliotecarios.php">Bibliotecarios</a>
+					<a class="dropdown-item" href="livros.php">Livros</a>
+					<a class="dropdown-item" href="emprestimos.php">Empréstimos</a>
+				</div>
+			</li>
+		</ul>
+		<a class="navbar-text" href="logout.php">
+			Logout
+		</a>
+	</div>
+	</nav>
 
 <main class="container">

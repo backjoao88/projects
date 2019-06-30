@@ -104,7 +104,7 @@
          */ 
         public function setBibliotecarioSenha($bibliotecario_senha)
         {
-                $this->bibliotecario_senha = $bibliotecario_senha;
+                $this->bibliotecario_senha = sha1($bibliotecario_senha);
 
                 return $this;
         }
