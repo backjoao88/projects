@@ -10,6 +10,7 @@
         'interfaces' . DIRECTORY_SEPARATOR ,
         'interfaces' . DIRECTORY_SEPARATOR ,
         'interfaces' . DIRECTORY_SEPARATOR ,
+        'email' . DIRECTORY_SEPARATOR ,
         'pag' . DIRECTORY_SEPARATOR ,
         'pag' . DIRECTORY_SEPARATOR ,
         'pag' . DIRECTORY_SEPARATOR

@@ -8,18 +8,20 @@
         public function inserir(Bibliotecario $bibliotecario){
             try{
                 $pdo = Conexao::conectar();
-                $sql = 'INSERT INTO ' . self::NOME_TABELA_BIBLIOTECARIO . ' (bibliotecario_nome, bibliotecario_cpf, bibliotecario_login, bibliotecario_senha) VALUES(:bibliotecario_nome,:bibliotecario_cpf,:bibliotecario_login,:bibliotecario_senha)';
+                $sql = 'INSERT INTO ' . self::NOME_TABELA_BIBLIOTECARIO . ' (bibliotecario_nome, bibliotecario_cpf, bibliotecario_login, bibliotecario_senha, bibliotecario_email) VALUES(:bibliotecario_nome,:bibliotecario_cpf,:bibliotecario_login,:bibliotecario_senha, :bibliotecario_email)';
                 $stmt = $pdo->prepare($sql);
 
                 $stmt->bindParam(':bibliotecario_nome', $bibliotecario_nome, PDO::PARAM_STR);
                 $stmt->bindParam(':bibliotecario_cpf', $bibliotecario_cpf, PDO::PARAM_STR);
                 $stmt->bindParam(':bibliotecario_login', $bibliotecario_login, PDO::PARAM_STR);
                 $stmt->bindParam(':bibliotecario_senha', $bibliotecario_senha, PDO::PARAM_STR);
+                $stmt->bindParam(':bibliotecario_email', $bibliotecario_email, PDO::PARAM_STR);
 
                 $bibliotecario_nome        = $bibliotecario->getBibliotecarioNome();
                 $bibliotecario_cpf         = $bibliotecario->getBibliotecarioCpf();
                 $bibliotecario_login       = $bibliotecario->getBibliotecarioLogin();
                 $bibliotecario_senha       = $bibliotecario->getBibliotecarioSenha();
+                $bibliotecario_email       = $bibliotecario->getBibliotecarioEmail();
 
                 $stmt->execute();
 
@@ -33,19 +35,22 @@
         public function alterar(Bibliotecario $bibliotecario){
             try{
                 $pdo = Conexao::conectar();
-                $sql = 'UPDATE ' . self::NOME_TABELA_BIBLIOTECARIO . ' SET bibliotecario_nome = :bibliotecario_nome, bibliotecario_cpf = :bibliotecario_cpf, bibliotecario_login = :bibliotecario_login, bibliotecario_senha = :bibliotecario_senha WHERE bibliotecario_id = :bibliotecario_id;';
+                $sql = 'UPDATE ' . self::NOME_TABELA_BIBLIOTECARIO . ' SET bibliotecario_nome = :bibliotecario_nome, bibliotecario_cpf = :bibliotecario_cpf, bibliotecario_login = :bibliotecario_login, bibliotecario_senha = :bibliotecario_senha, bibliotecario_email = :bibliotecario_email WHERE bibliotecario_id = :bibliotecario_id;';
                 $stmt = $pdo->prepare($sql);
 
                 $stmt->bindParam(':bibliotecario_nome', $bibliotecario_nome, PDO::PARAM_STR);
                 $stmt->bindParam(':bibliotecario_cpf', $bibliotecario_cpf, PDO::PARAM_STR);
                 $stmt->bindParam(':bibliotecario_login', $bibliotecario_login, PDO::PARAM_STR);
                 $stmt->bindParam(':bibliotecario_senha', $bibliotecario_senha, PDO::PARAM_STR);
+                $stmt->bindParam(':bibliotecario_email', $bibliotecario_email, PDO::PARAM_STR);
+
                 $stmt->bindParam(':bibliotecario_id', $bibliotecario_id, PDO::PARAM_STR);
 
                 $bibliotecario_nome        = $bibliotecario->getBibliotecarioNome();
                 $bibliotecario_cpf         = $bibliotecario->getBibliotecarioCpf();
                 $bibliotecario_login       = $bibliotecario->getBibliotecarioLogin();
                 $bibliotecario_senha       = $bibliotecario->getBibliotecarioSenha();
+                $bibliotecario_email       = $bibliotecario->getBibliotecarioEmail();
                 $bibliotecario_id          = $bibliotecario->getBibliotecarioId();
 
                 $stmt->execute();
@@ -91,7 +96,8 @@
                                         ->setBibliotecarioNome($bibliotecarioAss['bibliotecario_nome'])
                                         ->setBibliotecarioCpf($bibliotecarioAss['bibliotecario_cpf'])
                                         ->setBibliotecarioLogin($bibliotecarioAss['bibliotecario_login'])
-                                        ->setBibliotecarioSenha($bibliotecarioAss['bibliotecario_senha']);
+                                        ->setBibliotecarioSenha($bibliotecarioAss['bibliotecario_senha'])
+                                        ->setBibliotecarioEmail($bibliotecarioAss['bibliotecario_email']);
 
                 return $bibliotecario;
             }catch (PDOException $e){
@@ -116,7 +122,9 @@
                                             ->setBibliotecarioNome($bib['bibliotecario_nome'])
                                             ->setBibliotecarioCpf($bib['bibliotecario_cpf'])
                                             ->setBibliotecarioLogin($bib['bibliotecario_login'])
-                                            ->setBibliotecarioSenha($bib['bibliotecario_senha']);
+                                            ->setBibliotecarioSenha($bib['bibliotecario_senha'])
+                                            ->setBibliotecarioEmail($bib['bibliotecario_email']);
+
                     $lista_bibs[] = $bibliotecario;
                    // echo var_dump($bibliotecario);echo '<br>';echo '<br>';
                 } 

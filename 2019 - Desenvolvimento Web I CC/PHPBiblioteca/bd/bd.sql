@@ -13,6 +13,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `bib` DEFAULT CHARACTER SET utf8 ;
 USE `bib` ;
+
 -- -----------------------------------------------------
 -- Table `bib`.`livro`
 -- -----------------------------------------------------
@@ -36,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `bib`.`bibliotecario` (
   `bibliotecario_cpf` VARCHAR(45) NULL,
   `bibliotecario_login` VARCHAR(45) NULL,
   `bibliotecario_senha` VARCHAR(45) NULL,
+	`bibliotecario_email` VARCHAR(45) NULL,
   PRIMARY KEY (`bibliotecario_id`))
 ENGINE = InnoDB;
 

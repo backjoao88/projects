@@ -10,12 +10,14 @@ function inserirLinhaTabelaBibliotecario(idTabela, bib) {
     var coluna_id       = linha_tabela_bibliotecario.insertCell(0)
     var coluna_nome     = linha_tabela_bibliotecario.insertCell(1)
     var coluna_cpf      = linha_tabela_bibliotecario.insertCell(2)
-    var coluna_acoes    = linha_tabela_bibliotecario.insertCell(3)
+    var coluna_email    = linha_tabela_bibliotecario.insertCell(3)
+    var coluna_acoes    = linha_tabela_bibliotecario.insertCell(4)
     
 
     coluna_id.innerHTML     = bib.bibliotecario_id
     coluna_nome.innerHTML   = bib.bibliotecario_nome
     coluna_cpf.innerHTML    = bib.bibliotecario_cpf
+    coluna_email.innerHTML  = bib.bibliotecario_email
 
     var a_editar          = document.createElement('a')
     var a_deletar         = document.createElement('a')
@@ -50,6 +52,7 @@ function inserirLinhaTabelaBibliotecario(idTabela, bib) {
 
         document.getElementById('edit-nome').value  = tds[1].innerHTML;
         document.getElementById('edit-cpf').value   = tds[2].innerHTML;
+        document.getElementById('edit-email').value   = tds[3].innerHTML;
 
     }
 

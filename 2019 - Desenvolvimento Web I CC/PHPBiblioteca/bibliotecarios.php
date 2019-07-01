@@ -17,12 +17,14 @@
         $cpf_bibliotecario      = isset($_POST['bibliotecario-cpf']) ? $_POST['bibliotecario-cpf'] : '';
         $login_biblitecario     = isset($_POST['bibliotecario-login']) ? $_POST['bibliotecario-login'] : '';
         $senha_bibliotecario    = isset($_POST['bibliotecario-senha']) ? $_POST['bibliotecario-senha'] : '';
+        $email_bibliotecario    = isset($_POST['bibliotecario-email']) ? $_POST['bibliotecario-email'] : '';
 
         $bib = (new Bibliotecario())->setBibliotecarioId(intval($id))
                             ->setBibliotecarioNome($nome_bibliotecario)
                             ->setBibliotecarioCpf($cpf_bibliotecario)
                             ->setBibliotecarioLogin($login_biblitecario)
-                            ->setBibliotecarioSenha($senha_bibliotecario);
+                            ->setBibliotecarioSenha($senha_bibliotecario)
+                            ->setBibliotecarioEmail($email_bibliotecario);
 
         $bibliotecarioBO->inserir($bib);
     }
@@ -39,11 +41,13 @@
         $id             = $_GET['id'];
         $nome_bibliotecario   = isset($_POST['edit-nome']) ? $_POST['edit-nome'] : '';
         $cpf_bibliotecario    = isset($_POST['edit-cpf']) ? $_POST['edit-cpf'] : '';
+        $email_bibliotecario    = isset($_POST['edit-email']) ? $_POST['edit-email'] : '';
 
         $bib = $bibliotecarioBO->procurarBibliotecarioPorId((new Bibliotecario())->setBibliotecarioId(intval($id)))
                             ->setBibliotecarioId(intval($id))
                             ->setBibliotecarioNome($nome_bibliotecario)
-                            ->setBibliotecarioCpf($cpf_bibliotecario);
+                            ->setBibliotecarioCpf($cpf_bibliotecario)
+                            ->setBibliotecarioEmail($email_bibliotecario);
 
         echo $bibliotecarioBO->alterar($bib);
     }
@@ -73,6 +77,7 @@
                         <th>ID</th>
                         <th>Nome</th>
 						<th>CPF</th>
+                        <th>Email</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -114,6 +119,10 @@
                                     </script>
                                 </div>	
                                 <div class="form-group">
+                                    <label>Email</label>
+                                    <input name="bibliotecario-email" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
                                     <label>Login</label>
                                     <input name="bibliotecario-login" type="text" class="form-control" required>
                                 </div>
@@ -154,7 +163,11 @@
                                         $('#edit-cpf').mask('000.000.000-00', {reverse: true});
 
                                     </script>
-                                </div>			
+                                </div>	
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input id="edit-email" name="edit-email" type="text" class="form-control" required>
+                                </div>		
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">

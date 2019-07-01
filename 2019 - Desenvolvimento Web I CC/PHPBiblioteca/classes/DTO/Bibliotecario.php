@@ -7,7 +7,7 @@
         private $bibliotecario_cpf;
         private $bibliotecario_login;
         private $bibliotecario_senha;
-
+        private $bibliotecario_email;
 
         /**
          * Get the value of bibliotecario_id
@@ -121,6 +121,26 @@
                     'CPF: ' . $this->getBibliotecarioCpf();          
         }
 
+
+        /**
+         * Get the value of bibliotecario_email
+         */ 
+        public function getBibliotecarioEmail()
+        {
+                return $this->bibliotecario_email;
+        }
+
+        /**
+         * Set the value of bibliotecario_email
+         *
+         * @return  self
+         */ 
+        public function setBibliotecarioEmail($bibliotecario_email)
+        {
+                $this->bibliotecario_email = $bibliotecario_email;
+
+                return $this;
+        }
     }
 
 

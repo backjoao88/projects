@@ -39,6 +39,8 @@
 
         $emprestimoBO->inserir($emp);
 
+        Email::enviarEmail($emp);
+
     }
 
     if(isset($_POST['deletar-emprestimo'])){
