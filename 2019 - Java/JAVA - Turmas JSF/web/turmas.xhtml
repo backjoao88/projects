@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Cadastro de Turma</title>
+        <style type="text/css">
+            .ui-datatable {
+                width:1000px;
+                margin: 20px auto;
+                text-align: center;
+            }
+
+        </style>
+    </h:head>
+    <h:body>
+        <ui:include src="header.xhtml"></ui:include>
+        <h:form>
+        <p:dataTable var="turma" value="#{turmaBean.listar()}" selection="#{turmaBean.turma}">
+            <f:facet name="header">
+                Turmas
+            </f:facet>
+            <p:column headerText="Código">
+                <h:outputText value="#{turma.turmaId}" />
+            </p:column>
+            <p:column headerText="Nome">
+                <h:commandLink value="#{turma.turmaNome}" action="${turmaBean.editarTurma(turma)}"></h:commandLink>
+            </p:column>
+         </p:dataTable>
+         </h:form>
+    </h:body>
+</html>

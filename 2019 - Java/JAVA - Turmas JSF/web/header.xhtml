@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Projeto URI</title>
+    </h:head>
+    <style>
+        p:menubar{
+            padding: 0;
+        }
+    </style>
+    <h:body>
+        <p:menubar>
+            <p:menuitem value="Home" url="index.jsf" />
+            <p:submenu label="Cadastros" icon="pi pi-file">
+                <p:menuitem value="Cadastrar Turma"       url="turmaCadastro.jsf" />
+            </p:submenu>
+            <p:submenu label="Listagem" icon="pi pi-file">
+                <p:menuitem value="Instituição" url="instituicoes.jsf" />
+                <p:menuitem value="Aluno"       url="alunos.jsf" />
+                <p:menuitem value="Turma"       url="turmas.jsf" />
+            </p:submenu>
+        </p:menubar>
+    </h:body>
+</html>
+

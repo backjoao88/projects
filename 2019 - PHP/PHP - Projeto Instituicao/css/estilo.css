@@ -1,0 +1,44 @@
+#tabela_acoes {
+    width: 250px;
+}
+
+#btn-editar {
+    margin-right: 5px;
+}
+
+#main {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+#input_tabela {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+
+#input_number {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    width: 70px;
+}
+#input_data {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    width: 110px;
+}
+
+#tabela_id {
+    width: 150px;
+}
+
+#tabela_id_instituicao {
+    width: 15px;
+}
+
+#click {
+    cursor: pointer;
+}
+
